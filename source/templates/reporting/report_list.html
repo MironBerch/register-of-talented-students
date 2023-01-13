@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Указать новое соревнование {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    {% for contest in contests %}
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">{{contest.title}}</h5>
+                <a href="{% url 'update' contest.id %}" class="card-link">update</a>
+                <a href="{% url 'delete' contest.id %}" class="card-link">delete</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock content %}

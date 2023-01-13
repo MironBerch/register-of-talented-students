@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Registration {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">Регестрация</div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="InputEmail" class="form-label">Почта</label>
+                    {{ form.email|addclass:'form-control' }}
+                    <div id="emailHelp" class="form-text">Не показывайте никому почту.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="InputName" class="form-label">Имя</label>
+                    {{ form.name|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label for="InputSurname" class="form-label">Фамилия</label>
+                    {{ form.surname|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label for="InputPatronymic" class="form-label">Отчевство</label>
+                    {{ form.patronymic|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label for="InputPassword" class="form-label">Пароль</label>
+                    {{ form.password|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label for="InputConfirmPassword" class="form-label">Повторение пароля</label>
+                    {{ form.confirm_password|addclass:'form-control' }}
+                </div>
+                <button type="submit" class="btn btn-primary">Регестрация</button>
+            </form>
+            <p>Уже есть аккаунт <a href="{% url 'signin' %}">Вход</a></p>
+        </div>
+    </div>
+{% endblock content %}

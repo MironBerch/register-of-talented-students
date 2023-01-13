@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Указать новое соревнование {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">Вы хотите создать запись</div>
+        <div class="card-body">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Название конкурса</label>
+                    {{ form.title|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">ФИО ученика</label>
+                    {{ form.students_name|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">ФИО руководителя</label>
+                    {{ form.teachers_name|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Дата</label>
+                    {{ form.event_date|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Предмет</label>
+                    {{ form.subject|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Класс</label>
+                    {{ form.school_сlass|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Этап</label>
+                    {{ form.stage|addclass:'form-select' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Направление</label>
+                    {{ form.direction|addclass:'form-select' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Результат</label>
+                    {{ form.result|addclass:'form-select' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Иное</label>
+                    {{ form.other|addclass:'form-control' }}
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить запись</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

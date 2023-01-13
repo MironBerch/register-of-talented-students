@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Registration {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">Вы действительно хотите выйти из аккаунта?</div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Да, я хочу выйти</button>
+                <a href='/'><button type="submit" class="btn btn-primary">Нет, не хочу</button></a>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Указать новое соревнование {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="">
+                {% csrf_token %}
+                <h2>Вы дейвствительно хотите удалить мероприятие {{ contest.title }} в котором учавствовал {{ contest.title }}</h2>
+                <button type="submit" class="btn btn-primary">Удалить</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
