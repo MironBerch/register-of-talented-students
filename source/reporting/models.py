@@ -32,7 +32,7 @@ class Contest(models.Model):
     )
     title = models.CharField(max_length=100)
     students_name = models.CharField(max_length=100)
-    other = models.TextField()
+    other = models.TextField(blank=True, null=True)
     teachers_name = models.CharField(max_length=100)
     stage = models.CharField(choices=STAGE_CHOICES, max_length=25)
     direction = models.CharField(choices=DIRECTION_CHOICES, max_length=25)

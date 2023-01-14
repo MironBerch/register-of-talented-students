@@ -14,7 +14,7 @@ class ContestCreateView(View):
             'form': form,
         }
 
-        return render(request, 'reporting/new_report.html', context)
+        return render(request, 'reporting/create_report.html', context)
 
     def post(self, request):
         form = ContestForm(request.POST or None)
@@ -73,3 +73,14 @@ class ContestDeleteView(View):
         contest = Contest.objects.get(id=id)
         contest.delete()
         return redirect('list')
+
+
+class ContestDetailView(View):
+    def get(self, request, id):
+        contest = Contest.objects.get(id=id)
+
+        context = {
+            'contest': contest,
+        }
+
+        return render(request, 'reporting/detail_report.html', context)

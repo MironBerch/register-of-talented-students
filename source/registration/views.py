@@ -55,7 +55,7 @@ class SigninView(View):
             
             if user is not None:
                 login(request, user)
-                return redirect('signout')
+                return redirect('list')
 
         context = {
             'form': form,

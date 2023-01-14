@@ -2,12 +2,18 @@
 {% block title %} {{ title }} Указать новое соревнование {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
+    <br>
+    <div class="d-grid">
+        <a href="{% url 'create' %}" class="btn btn-primary" type="button">Создать</a>
+    </div>
+    <br>
     {% for contest in contests %}
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h5 class="card-title">{{contest.title}}</h5>
-                <a href="{% url 'update' contest.id %}" class="card-link">update</a>
-                <a href="{% url 'delete' contest.id %}" class="card-link">delete</a>
+                <p class="card-text">Учавствовал: {{ contest.students_name }}<br>Педагог: {{ contest.teachers_name }}<br>Результат: {{ contest.teachers_name }}</p>
+                <a href="{% url 'update' contest.id %}" type="button" class="btn btn-outline-primary">Обновить</a>
+                <a href="{% url 'delete' contest.id %}" type="button" class="btn btn-outline-primary">Удалить</a>
             </div>
         </div>
         <br>
