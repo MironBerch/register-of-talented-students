@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Просмотр записи {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    <div class="card">
+        <div class="text-center card-header"><h2>Просмотреть запись</h2></div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label">Название конкурса: {{ contest.title }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ФИО ученика: {{ contest.students_name }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ФИО руководителя: {{ contest.teachers_name }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Дата: {{ contest.event_date }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Предмет: {{ contest.subject }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Класс: {{ contest.school_сlass }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Этап: {{ contest.stage }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Направление: {{ contest.direction }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Результат: {{ contest.result }}</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Иное: {{ contest.other }}</label>
+            </div>
+            <a href="{% url 'update' contest.id %}" class="btn btn-primary" type="button">Изменить</a>
+            <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
+        </div>
+    </div>
+{% endblock content %}

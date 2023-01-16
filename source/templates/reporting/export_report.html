@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Просмотр записи {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    <div class="card">
+        <div class="text-center card-header"><h2>Экспортировать мероприятия</h2></div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                </div>
+                <button class="btn btn-primary" type="submit">Экспортировать в excel</button>
+                <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

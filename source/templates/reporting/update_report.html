@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} Изменить соревнование {{ block.super }} {% endblock %}
+{% block title %} {{ title }} Изменить запись {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
     <div class="card">
-        <div class="card-header">Вы хотите изменить запись</div>
+        <div class="text-center card-header"><h2>Изменить запись</h2></div>
         <div class="card-body">
             <form method="post" action="">
                 {% csrf_token %}
@@ -48,7 +48,7 @@
                     {{ form.other|addclass:'form-control' }}
                 </div>
                 <button type="submit" class="btn btn-primary">Сохранить изменения записи</button>
-                <a href="{% url 'list' %}" class="btn btn-primary" type="button">Обратно</a>
+                <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
             </form>
         </div>
     </div>

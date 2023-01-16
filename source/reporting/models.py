@@ -2,8 +2,6 @@ from django.db import models
 
 
 class Contest(models.Model):
-    creation_date = models.DateField(editable=True, auto_now_add=True)
-    event_date = models.DateField(editable=True,)
     STAGE_CHOICES = (
         ('Школьный', 'Школьный'),
         ('Районный', 'Районный'),
@@ -30,10 +28,12 @@ class Contest(models.Model):
         ('Участник', 'Участник'),
         ('Дипломат', 'Дипломат'),
     )
+    creation_date = models.DateField(editable=True, auto_now_add=True)
+    event_date = models.DateField(editable=True,)
     title = models.CharField(max_length=100)
     students_name = models.CharField(max_length=100)
     other = models.TextField(blank=True, null=True)
-    teachers_name = models.CharField(max_length=100)
+    teachers_name = models.CharField(max_length=100, blank=True, null=True)
     stage = models.CharField(choices=STAGE_CHOICES, max_length=25)
     direction = models.CharField(choices=DIRECTION_CHOICES, max_length=25)
     subject = models.CharField(max_length=100)

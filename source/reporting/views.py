@@ -1,12 +1,12 @@
-from django.shortcuts import render
 from reporting.models import Contest
 from django.shortcuts import render, redirect
 from django.views import View
 from reporting.forms import ContestForm
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from reporting.export import export_contest_to_excel
 
 
-class ContestCreateView(View):
+class ContestCreateView(LoginRequiredMixin, View):
     def get(self, request):
         form = ContestForm()
 
@@ -15,7 +15,7 @@ class ContestCreateView(View):
         }
 
         return render(request, 'reporting/create_report.html', context)
-
+    
     def post(self, request):
         form = ContestForm(request.POST or None)
 
@@ -26,9 +26,9 @@ class ContestCreateView(View):
         return redirect('create')
 
 
-class ReportListView(View):
+class ContestListView(LoginRequiredMixin, View):
     def get(self, request):
-        contests = Contest.objects.all()
+        contests = Contest.objects.all().order_by('-id')
         
         context = {
             'contests': contests,
@@ -37,7 +37,7 @@ class ReportListView(View):
         return render(request, 'reporting/report_list.html', context)
 
 
-class ContestUpdateView(View):
+class ContestUpdateView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
         form = ContestForm(request.POST or None, instance=contest)
@@ -59,7 +59,7 @@ class ContestUpdateView(View):
         return redirect('list')
 
 
-class ContestDeleteView(View):
+class ContestDeleteView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
         
@@ -75,7 +75,7 @@ class ContestDeleteView(View):
         return redirect('list')
 
 
-class ContestDetailView(View):
+class ContestDetailView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
 
@@ -84,3 +84,13 @@ class ContestDetailView(View):
         }
 
         return render(request, 'reporting/detail_report.html', context)
+
+
+class ContestExportView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'reporting/export_report.html')
+    
+    def post(self, request):
+        contests = Contest.objects.all().order_by('-id')
+        export_contest_to_excel(contests)
+        return redirect('list')
