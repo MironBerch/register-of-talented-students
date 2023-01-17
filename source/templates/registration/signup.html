@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} Registration {{ block.super }} {% endblock %}
+{% block title %} {{ title }} Регистрация {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
     <div class="card">
@@ -32,7 +32,7 @@
                     <label for="InputConfirmPassword" class="form-label">Повторение пароля</label>
                     {{ form.confirm_password|addclass:'form-control' }}
                 </div>
-                <button type="submit" class="btn btn-primary">Регестрация</button>
+                <button type="submit" class="btn btn-primary">Регистрация</button>
             </form>
             <p>Уже есть аккаунт <a href="{% url 'signin' %}">Вход</a></p>
         </div>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} Указать новое соревнование {{ block.super }} {% endblock %}
+{% block title %} {{ title }} Указать новое мероприятие {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
     <div class="card">
@@ -47,7 +47,7 @@
                     <label class="form-label">Иное</label>
                     {{ form.other|addclass:'form-control' }}
                 </div>
-                <button type="submit" class="btn btn-primary">Сохранить запись</button>
+                <button type="submit" class="btn btn-primary">Сохранить мероприятие</button>
                 <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
             </form>
         </div>

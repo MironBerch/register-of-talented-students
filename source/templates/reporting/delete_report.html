@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} Указать новое соревнование {{ block.super }} {% endblock %}
+{% block title %} {{ title }} Указать мероприятие {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
     <div class="card">
@@ -7,7 +7,7 @@
             <div class="text-center card-header"><h2>Удалить мероприятие</h2></div>
             <form method="post" action="">
                 {% csrf_token %}
-                <h2>Вы дейвствительно хотите удалить мероприятие {{ contest.title }} в котором учавствовал {{ contest.title }}</h2>
+                <h2>Вы дейвствительно хотите удалить мероприятие {{ contest.title }} в котором учавствовал {{ contest.students_name }}?</h2>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Удалить</button>
                     <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>

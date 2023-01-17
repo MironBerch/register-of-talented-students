@@ -20,7 +20,9 @@ class ContestCreateView(LoginRequiredMixin, View):
         form = ContestForm(request.POST or None)
 
         if form.is_valid():
-            form.save()
+            contest = form.save()
+            contest.contest_creater = request.user
+            contest.save()
             return redirect('list')
 
         return redirect('create')
@@ -28,8 +30,11 @@ class ContestCreateView(LoginRequiredMixin, View):
 
 class ContestListView(LoginRequiredMixin, View):
     def get(self, request):
-        contests = Contest.objects.all().order_by('-id')
-        
+        if request.user.is_superuser:
+            contests = Contest.objects.all().order_by('-id')
+        else:
+            contests = Contest.objects.filter(contest_creater=request.user).order_by('-id')
+
         context = {
             'contests': contests,
         }
@@ -40,6 +45,9 @@ class ContestListView(LoginRequiredMixin, View):
 class ContestUpdateView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
+
+        if not (request.user==request.user.is_superuser or request.user==contest.contest_creater):
+            return redirect('list')
         form = ContestForm(request.POST or None, instance=contest)
 
         context = {
@@ -62,6 +70,9 @@ class ContestUpdateView(LoginRequiredMixin, View):
 class ContestDeleteView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
+
+        if not (request.user==request.user.is_superuser or request.user==contest.contest_creater):
+            return redirect('list')
         
         context = {
             'contest': contest,
@@ -91,6 +102,10 @@ class ContestExportView(LoginRequiredMixin, View):
         return render(request, 'reporting/export_report.html')
     
     def post(self, request):
-        contests = Contest.objects.all().order_by('-id')
+        if request.user.is_superuser:
+            contests = Contest.objects.all().order_by('-id')
+        else:
+            contests = Contest.objects.filter(contest_creater=request.user).order_by('-id')
+
         export_contest_to_excel(contests)
         return redirect('list')

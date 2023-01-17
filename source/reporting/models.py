@@ -1,7 +1,32 @@
 from django.db import models
+from users.models import User 
 
 
 class Contest(models.Model):
+    SUBJECT_CHOICES = (
+        ('Русский язык', 'Русский язык'),
+        ('Литературное чтение', 'Литературное чтение'),
+        ('Математика', 'Математика'),
+        ('Окружающий мир', 'Окружающий мир'),
+        ('Музыка', 'Музыка'),
+        ('ИЗО', 'ИЗО'),
+        ('Технология', 'Технология'),
+        ('Физическая культура', 'Физическая культура'),
+        ('Английский язык', 'Английский язык'),
+        ('ОРКСЭ', 'ОРКСЭ'),
+        ('Литература', 'Литература'),
+        ('История', 'История'),
+        ('Обществознание', 'Обществознание'),
+        ('География', 'География'),
+        ('Биология', 'Биология'),
+        ('ОБЖ', 'ОБЖ'),
+        ('Экономика', 'Экономика'),
+        ('Технология', 'Технология'),
+        ('Химия', 'Химия'),
+        ('Физика', 'Физика'),
+        ('Информатика', 'Информатика'),
+        ('Проектная деятельность', 'Проектная деятельность'),
+    )
     STAGE_CHOICES = (
         ('Школьный', 'Школьный'),
         ('Районный', 'Районный'),
@@ -28,6 +53,7 @@ class Contest(models.Model):
         ('Участник', 'Участник'),
         ('Дипломат', 'Дипломат'),
     )
+    contest_creater = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
     creation_date = models.DateField(editable=True, auto_now_add=True)
     event_date = models.DateField(editable=True,)
     title = models.CharField(max_length=100)
@@ -36,6 +62,6 @@ class Contest(models.Model):
     teachers_name = models.CharField(max_length=100, blank=True, null=True)
     stage = models.CharField(choices=STAGE_CHOICES, max_length=25)
     direction = models.CharField(choices=DIRECTION_CHOICES, max_length=25)
-    subject = models.CharField(max_length=100)
+    subject = models.CharField(choices=SUBJECT_CHOICES, max_length=25)
     school_сlass = models.CharField(max_length=100)
     result = models.CharField(choices=RESULT_CHOICES, max_length=25)
