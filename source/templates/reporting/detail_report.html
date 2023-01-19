@@ -2,11 +2,12 @@
 {% block title %} {{ title }} Просмотр мероприятия {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
+    {% include 'includes/navbar.html' %}
     <div class="card">
         <div class="text-center card-header"><h2>Просмотр мероприятия</h2></div>
         <div class="card-body">
             <div class="mb-3">
-                <label class="form-label">Название конкурса: {{ contest.title }}</label>
+                <label class="form-label">Название мероприятие: {{ contest.title }}</label>
             </div>
             <div class="mb-3">
                 <label class="form-label">ФИО ученика: {{ contest.students_name }}</label>
@@ -21,10 +22,13 @@
                 <label class="form-label">Дата учёта мероприятия: {{ contest.creation_date }}</label>
             </div>
             <div class="mb-3">
+                <label class="form-label">Дата последнего изменения мероприятия: {{ contest.modified_date }}</label>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Предмет: {{ contest.subject }}</label>
             </div>
             <div class="mb-3">
-                <label class="form-label">Класс: {{ contest.school_сlass }}</label>
+                <label class="form-label">Класс: {{ contest.school_сlass + school_parallel }}</label>
             </div>
             <div class="mb-3">
                 <label class="form-label">Этап: {{ contest.stage }}</label>
@@ -38,8 +42,20 @@
             <div class="mb-3">
                 <label class="form-label">Иное: {{ contest.other }}</label>
             </div>
-            <a href="{% url 'update' contest.id %}" class="btn btn-primary" type="button">Изменить мероприятие</a>
-            <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'update' contest.id %}" class="btn btn-primary" type="button">Изменить мероприятие</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock content %}

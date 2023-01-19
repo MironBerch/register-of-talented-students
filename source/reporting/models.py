@@ -53,8 +53,27 @@ class Contest(models.Model):
         ('Участник', 'Участник'),
         ('Дипломат', 'Дипломат'),
     )
+    PARALLEL_CHOICES = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+    )
+    CLASS_CHOICES = (
+        ('А', 'А'),
+        ('Б', 'Б'),
+        ('В', 'В'),
+    )
     contest_creater = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
-    creation_date = models.DateField(editable=True, auto_now_add=True)
+    creation_date = models.DateField(auto_now_add=True)
+    modified_date = models.DateField(auto_now=True)
     event_date = models.DateField(editable=True,)
     title = models.CharField(max_length=100)
     students_name = models.CharField(max_length=100)
@@ -63,5 +82,6 @@ class Contest(models.Model):
     stage = models.CharField(choices=STAGE_CHOICES, max_length=25)
     direction = models.CharField(choices=DIRECTION_CHOICES, max_length=25)
     subject = models.CharField(choices=SUBJECT_CHOICES, max_length=25)
-    school_сlass = models.CharField(max_length=100)
+    school_parallel = models.CharField(choices=PARALLEL_CHOICES, max_length=2)
+    school_сlass = models.CharField(choices=CLASS_CHOICES, max_length=2)
     result = models.CharField(choices=RESULT_CHOICES, max_length=25)

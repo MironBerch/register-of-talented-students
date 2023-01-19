@@ -2,9 +2,10 @@
 {% block title %} {{ title }} Указать новое мероприятие {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
+    {% include 'includes/navbar.html' %}
     <div class="card">
         <div class="card-body">
-            <div class="text-center card-header"><h2>Создание записи</h2></div>
+            <div class="text-center card-header"><h2>Создание мероприятие</h2></div>
             <form method="post" action="">
                 {% csrf_token %}
                 <div class="mb-3">
@@ -26,6 +27,10 @@
                 <div class="mb-3">
                     <label class="form-label">Предмет</label>
                     {{ form.subject|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Параллель</label>
+                    {{ form.school_parallel|addclass:'form-control' }}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Класс</label>

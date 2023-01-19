@@ -1,7 +1,7 @@
 from openpyxl import Workbook
 
 
-def format(input_date: str) -> str:
+def format_date(input_date: str) -> str:
     day = input_date[8:10]
     mounth = input_date[5:7]
     year = input_date[0:4]
@@ -27,14 +27,15 @@ def export_contest_to_excel(contests) -> None:
     ws['H1'] = 'Результат'
     ws['I1'] = 'Комментарий'
     ws['J1'] = 'Дата мероприятия'
-    ws['K1'] = 'Дата Учёта'
+    ws['K1'] = 'Дата учёта'
+    ws['L1'] = 'Дата последнего изменения'
 
-    letter_string = 'ABCDEFGHIJK'
+    letter_string = 'ABCDEFGHIJKL'
     contest_index = 1
 
     for contest in contests:
         contest_index = contest_index + 1
-        for index in range(11):
+        for index in range(12):
             cell = letter_string[index] + str(contest_index)
             if letter_string[index] == 'A':
                 ws[cell] = str(contest.title)
@@ -55,8 +56,10 @@ def export_contest_to_excel(contests) -> None:
             if letter_string[index] == 'I':
                 ws[cell] = str(contest.other)
             if letter_string[index] == 'J':
-                ws[cell] = format(input_date=str(contest.event_date))
+                ws[cell] = format_date(input_date=str(contest.event_date))
             if letter_string[index] == 'K':
-                ws[cell] = format(input_date=str(contest.creation_date))
+                ws[cell] = format_date(input_date=str(contest.creation_date))
+            if letter_string[index] == 'L':
+                ws[cell] = format_date(input_date=str(contest.modified_date))
 
     wb.save('media//учёт.xlsx')

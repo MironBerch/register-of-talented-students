@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
-{% block title %} {{ title }} Изменить запись {{ block.super }} {% endblock %}
+{% block title %} {{ title }} Изменить мероприятие {{ block.super }} {% endblock %}
 {% load add_class %}
 {% block content %}
+    {% include 'includes/navbar.html' %}
     <div class="card">
-        <div class="text-center card-header"><h2>Изменить запись</h2></div>
+        <div class="text-center card-header"><h2>Изменить мероприятие</h2></div>
         <div class="card-body">
             <form method="post" action="">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label class="form-label">Название конкурса</label>
+                    <label class="form-label">Название мероприятие</label>
                     {{ form.title|addclass:'form-control' }}
                 </div>
                 <div class="mb-3">
@@ -26,6 +27,10 @@
                 <div class="mb-3">
                     <label class="form-label">Предмет</label>
                     {{ form.subject|addclass:'form-control' }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Параллель</label>
+                    {{ form.school_parallel|addclass:'form-control' }}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Класс</label>
@@ -47,8 +52,20 @@
                     <label class="form-label">Иное</label>
                     {{ form.other|addclass:'form-control' }}
                 </div>
-                <button type="submit" class="btn btn-primary">Сохранить изменения записи</button>
-                <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Сохранить изменения записи</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'list' %}" class="btn btn-primary" type="button">Назад</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
