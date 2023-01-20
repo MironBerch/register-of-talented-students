@@ -10,7 +10,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     surname = models.CharField(_('surname'), max_length=100)
     patronymic = models.CharField(_('patronymic'), max_length=100, null=True, blank=True)
     
-    is_active = models.BooleanField(_('active'), default=True)
+    is_active = models.BooleanField(_('active'), default=False)
     is_verified = models.BooleanField(_('verified'), default=False)
     is_superuser = models.BooleanField(_('superuser'), default=False)
     is_staff = models.BooleanField(_('staff'), default=False)

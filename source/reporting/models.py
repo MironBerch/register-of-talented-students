@@ -67,9 +67,9 @@ class Contest(models.Model):
         ('11', '11'),
     )
     CLASS_CHOICES = (
-        ('А', 'А'),
-        ('Б', 'Б'),
-        ('В', 'В'),
+        ('а', 'а'),
+        ('б', 'б'),
+        ('в', 'в'),
     )
     contest_creater = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
     creation_date = models.DateField(auto_now_add=True)

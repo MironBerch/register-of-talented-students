@@ -28,7 +28,7 @@
                 <label class="form-label">Предмет: {{ contest.subject }}</label>
             </div>
             <div class="mb-3">
-                <label class="form-label">Класс: {{ contest.school_сlass + school_parallel }}</label>
+                <label class="form-label">Класс: {{ contest.school_parallel|add:contest.school_сlass }}</label>
             </div>
             <div class="mb-3">
                 <label class="form-label">Этап: {{ contest.stage }}</label>
@@ -40,7 +40,7 @@
                 <label class="form-label">Результат: {{ contest.result }}</label>
             </div>
             <div class="mb-3">
-                <label class="form-label">Иное: {{ contest.other }}</label>
+                <label class="form-label">Комментарий: {{ contest.other }}</label>
             </div>
             <div class="container text-center">
                 <div class="row">

@@ -3,6 +3,7 @@ from django.views import View
 from users.forms import SignupForm, SigninForm
 from users.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 class SignupView(View):
@@ -24,8 +25,11 @@ class SignupView(View):
             patronymic = form.cleaned_data.get('patronymic')
             password = form.cleaned_data.get('password')
             User.objects.create_user(email=email, name=name, surname=surname, patronymic=patronymic, password=password)
+            messages.success(request, 'Пользователь зарегистрирован. Подождите активации пользователя администратором.')
             return redirect('signin')
-            
+        
+        messages.success(request, 'Пароли не совпадают.')
+
         context = {
             'form': form,
         }
@@ -54,6 +58,8 @@ class SigninView(View):
             if user is not None:
                 login(request, user)
                 return redirect('list')
+            
+            messages.warning(request, 'Неправильная почта или пароль.')
 
         context = {
             'form': form,

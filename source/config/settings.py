@@ -33,6 +33,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_auto_logout.middleware.auto_logout',
 ]
 
 
@@ -50,6 +52,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -111,3 +115,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_URL = '/signin'
 LOGIN_REDIRECT_URL = 'list'
+
+
+AUTO_LOGOUT = {
+    'IDLE_TIME': 300,
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+    'MESSAGE': 'Вы бездействовали более 5 минут. Пожалуйста, войдите снова, чтобы продолжить.',
+}

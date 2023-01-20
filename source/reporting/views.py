@@ -5,7 +5,6 @@ from reporting.forms import ContestForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reporting.export import export_contest_to_excel
 import mimetypes
-# import os module
 import os
 from django.http.response import HttpResponse
 
