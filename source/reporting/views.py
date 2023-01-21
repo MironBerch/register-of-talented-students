@@ -1,6 +1,6 @@
 from reporting.models import Contest
 from django.shortcuts import render, redirect
-from django.views import View
+from core.views import View
 from reporting.forms import ContestForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reporting.export import export_contest_to_excel
@@ -48,8 +48,7 @@ class ContestListView(LoginRequiredMixin, View):
 class ContestUpdateView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
-
-        if not (request.user==request.user.is_superuser or request.user==contest.contest_creater):
+        if not (request.user.is_superuser==True or request.user==contest.contest_creater):
             return redirect('list')
         form = ContestForm(request.POST or None, instance=contest)
 
