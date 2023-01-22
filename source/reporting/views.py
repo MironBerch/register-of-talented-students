@@ -73,7 +73,7 @@ class ContestDeleteView(LoginRequiredMixin, View):
     def get(self, request, id):
         contest = Contest.objects.get(id=id)
 
-        if not (request.user==request.user.is_superuser or request.user==contest.contest_creater):
+        if not (request.user.is_superuser==True or request.user==contest.contest_creater):
             return redirect('list')
         
         context = {
@@ -112,11 +112,11 @@ class ContestExportView(LoginRequiredMixin, View):
         export_contest_to_excel(contests)
 
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        filename = 'учёт.xlsx'
+        filename = 'export.xlsx'
         filepath = BASE_DIR + '/media/' + filename
         mime_type, _ = mimetypes.guess_type(filepath)
 
         with open(filepath, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type=mime_type)
-            response['Content-Disposition'] = 'inline; filename=export.xlsx' # + os.path.basename(filepath)
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filepath)
             return response

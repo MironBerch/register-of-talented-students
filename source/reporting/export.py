@@ -42,7 +42,8 @@ def export_contest_to_excel(contests) -> None:
             if letter_string[index] == 'B':
                 ws[cell] = str(contest.students_name)
             if letter_string[index] == 'C':
-                ws[cell] = str(contest.teachers_name)
+                if contest.teachers_name:
+                    ws[cell] = str(contest.teachers_name)
             if letter_string[index] == 'D':
                 ws[cell] = str(contest.subject)
             if letter_string[index] == 'E':
@@ -62,4 +63,4 @@ def export_contest_to_excel(contests) -> None:
             if letter_string[index] == 'L':
                 ws[cell] = format_date(input_date=str(contest.modified_date))
 
-    wb.save('media//учёт.xlsx')
+    wb.save('media//export.xlsx')

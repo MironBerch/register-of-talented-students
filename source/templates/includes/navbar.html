@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="collapse navbar-collapse"></div>
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" style="margin-right: 5px;">{{ request.user.name }} {{ request.user.surname }}</a>
+                <a class="nav-link" aria-current="page" style="margin-right: 5px;">{{ request.user.surname }} {{ request.user.name }} {{ request.user.patronymic }}</a>
                 <div class="d-flex">
                     <a class="btn btn-outline-primary" href="{% url 'signout' %}">Выйти</a>
                 </div>

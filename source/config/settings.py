@@ -4,8 +4,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t'
-DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1']
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -98,10 +98,8 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -111,7 +109,7 @@ AUTH_USER_MODEL = 'users.User'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 LOGIN_URL = '/signin'
