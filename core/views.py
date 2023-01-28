@@ -7,7 +7,7 @@ JSON_DUMPS_PARAMS = {'ensure_ascii': False}
 
 
 class View(View):
-    """Базовый класс для вьювсб обрабатывает исключения"""
+    """Base view class for error processing"""
 
     def dispatch(self, request, *args, **kwargs):
         try: 
@@ -27,17 +27,25 @@ class View(View):
         )
 
 
-def bad_request(request, exception):
-    return render(request, "misc/400.html", status=400)
+def bad_request_view(request, *args, **kwargs):
+    response = render(request, 'misc/400.html')
+    response.status_code = 400
+    return response
 
 
-def access_denied_error(request, exception):
-    return render(request, "misc/403.html", status=403)
+def permission_denied_view(request, *args, **kwargs):
+    response = render(request, 'misc/403.html')
+    response.status_code = 403
+    return response
 
 
-def page_not_found(request, exception):
-    return render(request, "misc/404.html", {"path": request.path}, status=404)
+def page_not_found_view(request, *args, **kwargs):
+    response = render(request, 'misc/404.html')
+    response.status_code = 404
+    return response
 
 
-def server_error(request):
-    return render(request, "misc/500.html", status=500)
+def server_error_view(request, *args, **kwargs):
+    response = render(request, 'misc/500.html')
+    response.status_code = 500
+    return response

@@ -1,5 +1,5 @@
 # Foodgram-App [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-create at 24.10.23
+create at 28.01.23
 ## Technology stack:
 Python 3, Django 4, openpyxl
 ## Steps to be followed for first time use

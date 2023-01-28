@@ -7,6 +7,7 @@ from reporting.export import export_contest_to_excel
 import mimetypes
 import os
 from django.http.response import HttpResponse
+from reporting.services import get_all_contests, get_users_creation_contests, get_contest
 
 
 class ContestCreateView(LoginRequiredMixin, View):
@@ -34,9 +35,9 @@ class ContestCreateView(LoginRequiredMixin, View):
 class ContestListView(LoginRequiredMixin, View):
     def get(self, request):
         if request.user.is_superuser:
-            contests = Contest.objects.all().order_by('-id')
+            contests = get_all_contests()
         else:
-            contests = Contest.objects.filter(contest_creater=request.user).order_by('-id')
+            contests = get_users_creation_contests(request=request)
 
         context = {
             'contests': contests,
@@ -47,9 +48,11 @@ class ContestListView(LoginRequiredMixin, View):
 
 class ContestUpdateView(LoginRequiredMixin, View):
     def get(self, request, id):
-        contest = Contest.objects.get(id=id)
+        contest = get_contest(id=id)
+
         if not (request.user.is_superuser==True or request.user==contest.contest_creater):
             return redirect('list')
+
         form = ContestForm(request.POST or None, instance=contest)
 
         context = {
@@ -59,7 +62,7 @@ class ContestUpdateView(LoginRequiredMixin, View):
         return render(request, 'reporting/update_report.html', context)
 
     def post(self, request, id):
-        contest = Contest.objects.get(id=id) 
+        contest = get_contest(id=id)
         form = ContestForm(request.POST or None, instance=contest)
 
         if form.is_valid():
@@ -71,7 +74,7 @@ class ContestUpdateView(LoginRequiredMixin, View):
 
 class ContestDeleteView(LoginRequiredMixin, View):
     def get(self, request, id):
-        contest = Contest.objects.get(id=id)
+        contest = get_contest(id=id)
 
         if not (request.user.is_superuser==True or request.user==contest.contest_creater):
             return redirect('list')
@@ -83,14 +86,14 @@ class ContestDeleteView(LoginRequiredMixin, View):
         return render(request, 'reporting/delete_report.html', context)
 
     def post(self, request, id):
-        contest = Contest.objects.get(id=id)
+        contest = get_contest(id=id)
         contest.delete()
         return redirect('list')
 
 
 class ContestDetailView(LoginRequiredMixin, View):
     def get(self, request, id):
-        contest = Contest.objects.get(id=id)
+        contest = get_contest(id=id)
 
         context = {
             'contest': contest,
@@ -105,9 +108,9 @@ class ContestExportView(LoginRequiredMixin, View):
     
     def post(self, request):
         if request.user.is_superuser:
-            contests = Contest.objects.all().order_by('-id')
+            contests = get_all_contests()
         else:
-            contests = Contest.objects.filter(contest_creater=request.user).order_by('-id')
+            contests = get_users_creation_contests(request=request)
 
         export_contest_to_excel(contests)
 

@@ -11,10 +11,10 @@ urlpatterns = [
 ]
 
 
-handler400 = 'core.views.bad_request'
-handler403 = 'core.views.access_denied_error'
-handler404 = 'core.views.page_not_found'
-handler500 = 'core.views.server_error'
+handler400 = 'core.views.bad_request_view'
+handler403 = 'core.views.permission_denied_view'
+handler404 = 'core.views.page_not_found_view'
+handler500 = 'core.views.server_error_view'
 
 
 if settings.DEBUG:

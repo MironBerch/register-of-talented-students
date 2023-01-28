@@ -23,7 +23,6 @@ class TestForms(SimpleTestCase):
 
         self.assertTrue(form.is_valid())
 
-
     def test_contest_form_valid_no_data(self):
         form = ContestForm(data={})
 
