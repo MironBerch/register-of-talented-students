@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <div class="text-center card-header"><h2>Создание мероприятие</h2></div>
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label class="form-label">Название конкурса*</label>
@@ -47,6 +47,10 @@
                 <div class="mb-3">
                     <label class="form-label">Результат*</label>
                     {{ form.result|addclass:'form-select' }}
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Скан диплома</label>
+                    {{ form.scan_diploma|addclass:'form-control' }}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Комментарий</label>

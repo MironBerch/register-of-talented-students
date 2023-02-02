@@ -1,4 +1,3 @@
-from reporting.models import Contest
 from django.shortcuts import render, redirect
 from core.views import View
 from reporting.forms import ContestForm
@@ -21,7 +20,7 @@ class ContestCreateView(LoginRequiredMixin, View):
         return render(request, 'reporting/create_report.html', context)
     
     def post(self, request):
-        form = ContestForm(request.POST or None)
+        form = ContestForm(request.POST or None, files=request.FILES or None)
 
         if form.is_valid():
             contest = form.save()
@@ -53,17 +52,18 @@ class ContestUpdateView(LoginRequiredMixin, View):
         if not (request.user.is_superuser==True or request.user==contest.contest_creater):
             return redirect('list')
 
-        form = ContestForm(request.POST or None, instance=contest)
+        form = ContestForm(request.POST or None, instance=contest, files=request.FILES or None)
 
         context = {
             'form': form,
+            'contest': contest,
         }
 
         return render(request, 'reporting/update_report.html', context)
 
     def post(self, request, id):
         contest = get_contest(id=id)
-        form = ContestForm(request.POST or None, instance=contest)
+        form = ContestForm(request.POST or None, instance=contest, files=request.FILES or None)
 
         if form.is_valid():
             form.save()

@@ -40,6 +40,9 @@
                 <label class="form-label">Результат: {{ contest.result }}</label>
             </div>
             <div class="mb-3">
+                <label for="formFile" class="form-label">Скан диплома: {% if contest.scan_diploma %} <a href="{{ contest.scan_diploma.url }}">просмотреть</a>{% else %} <p>нет скана диплома</p>{% endif %}</label>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Комментарий: {{ contest.other }}</label>
             </div>
             <div class="container text-center">

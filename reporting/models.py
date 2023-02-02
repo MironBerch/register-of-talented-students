@@ -84,4 +84,5 @@ class Contest(models.Model):
     subject = models.CharField(choices=SUBJECT_CHOICES, max_length=25)
     school_parallel = models.CharField(choices=PARALLEL_CHOICES, max_length=2)
     school_сlass = models.CharField(choices=CLASS_CHOICES, max_length=2)
+    scan_diploma = models.FileField(upload_to='diplom_scans/', null=True, blank=True)
     result = models.CharField(choices=RESULT_CHOICES, max_length=25)
