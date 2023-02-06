@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from core.views import View
 from reporting.forms import ContestForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reporting.export import export_contest_to_excel
-import mimetypes
 import os
-from django.http.response import HttpResponse
 from reporting.services import get_all_contests, get_users_creation_contests, get_contest
+from django.http import FileResponse
+from core.views import View
 
 
 class ContestCreateView(LoginRequiredMixin, View):
@@ -117,9 +116,6 @@ class ContestExportView(LoginRequiredMixin, View):
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         filename = 'export.xlsx'
         filepath = BASE_DIR + '/media/' + filename
-        mime_type, _ = mimetypes.guess_type(filepath)
-
-        with open(filepath, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type=mime_type)
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filepath)
-            return response
+        file = open(filepath, 'rb')
+        response = FileResponse(file)
+        return response
