@@ -5,18 +5,25 @@ from reporting.export import export_contest_to_excel
 import os
 from reporting.services import get_all_contests, get_users_creation_contests, get_contest
 from django.http import FileResponse
-from core.views import View
+from django.views import View
+from django.views.generic.base import TemplateResponseMixin
 
 
-class ContestCreateView(LoginRequiredMixin, View):
+class ContestCreateView(
+    LoginRequiredMixin,
+    TemplateResponseMixin,
+    View
+):
+    
+    template_name = 'reporting/create_report.html'
+    form_class = ContestForm
+
     def get(self, request):
-        form = ContestForm()
-
-        context = {
-            'form': form,
-        }
-
-        return render(request, 'reporting/create_report.html', context)
+        return self.render_to_response(
+            context = {
+                'form': self.form_class(),
+            },
+        )
     
     def post(self, request):
         form = ContestForm(request.POST or None, files=request.FILES or None)
@@ -27,10 +34,18 @@ class ContestCreateView(LoginRequiredMixin, View):
             contest.save()
             return redirect('list')
 
-        return redirect('create')
+        return self.render_to_response(
+            context={
+                'form': form,
+            },
+        )
 
 
-class ContestListView(LoginRequiredMixin, View):
+class ContestListView(
+    LoginRequiredMixin,
+    TemplateResponseMixin,
+    View,
+):
     def get(self, request):
         if request.user.is_superuser:
             contests = get_all_contests()
@@ -44,7 +59,14 @@ class ContestListView(LoginRequiredMixin, View):
         return render(request, 'reporting/report_list.html', context)
 
 
-class ContestUpdateView(LoginRequiredMixin, View):
+class ContestUpdateView(
+    LoginRequiredMixin,
+    TemplateResponseMixin,
+    View,
+):
+    
+    template_name = 'reporting/update_report.html'
+
     def get(self, request, id):
         contest = get_contest(id=id)
 
@@ -53,12 +75,13 @@ class ContestUpdateView(LoginRequiredMixin, View):
 
         form = ContestForm(request.POST or None, instance=contest, files=request.FILES or None)
 
-        context = {
-            'form': form,
-            'contest': contest,
-        }
+        return self.render_to_response(
+            context = {
+                'form': form,
+                'contest': contest,
+            },
+        )
 
-        return render(request, 'reporting/update_report.html', context)
 
     def post(self, request, id):
         contest = get_contest(id=id)
@@ -66,23 +89,30 @@ class ContestUpdateView(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
-            return redirect('list')
+            return redirect('detail', id=id)
         
-        return redirect('list')
+        return redirect('update', id=id)
 
 
-class ContestDeleteView(LoginRequiredMixin, View):
+class ContestDeleteView(
+    LoginRequiredMixin,
+    TemplateResponseMixin,
+    View,
+):
+    
+    template_name = 'reporting/delete_report.html'
+
     def get(self, request, id):
         contest = get_contest(id=id)
 
         if not (request.user.is_superuser==True or request.user==contest.contest_creater):
             return redirect('list')
-        
-        context = {
-            'contest': contest,
-        }
 
-        return render(request, 'reporting/delete_report.html', context)
+        return self.render_to_response(
+            context = {
+                'contest': contest,
+            },
+        )
 
     def post(self, request, id):
         contest = get_contest(id=id)
@@ -90,15 +120,22 @@ class ContestDeleteView(LoginRequiredMixin, View):
         return redirect('list')
 
 
-class ContestDetailView(LoginRequiredMixin, View):
+class ContestDetailView(
+    LoginRequiredMixin,
+    TemplateResponseMixin,
+    View,
+):
+    
+    template_name = 'reporting/detail_report.html'
+
     def get(self, request, id):
         contest = get_contest(id=id)
 
-        context = {
-            'contest': contest,
-        }
-
-        return render(request, 'reporting/detail_report.html', context)
+        return self.render_to_response(
+            context = {
+                'contest': contest,
+            },
+        )
 
 
 class ContestExportView(LoginRequiredMixin, View):
