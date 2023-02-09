@@ -7,6 +7,7 @@ from reporting.services import get_all_contests, get_users_creation_contests, ge
 from django.http import FileResponse
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
+from students.services import get_all_students
 
 
 class ContestCreateView(

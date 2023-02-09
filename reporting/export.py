@@ -40,14 +40,14 @@ def export_contest_to_excel(contests) -> None:
             if letter_string[index] == 'A':
                 ws[cell] = str(contest.title)
             if letter_string[index] == 'B':
-                ws[cell] = str(contest.students_name)
+                ws[cell] = str(contest.student)
             if letter_string[index] == 'C':
                 if contest.teachers_name:
                     ws[cell] = str(contest.teachers_name)
             if letter_string[index] == 'D':
                 ws[cell] = str(contest.subject)
             if letter_string[index] == 'E':
-                ws[cell] = str(contest.school_parallel) + str(contest.school_сlass)
+                ws[cell] = str(contest.student.school_parallel) + str(contest.student.school_сlass)
             if letter_string[index] == 'F':
                 ws[cell] = str(contest.direction)
             if letter_string[index] == 'G':

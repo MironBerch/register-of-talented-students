@@ -1,0 +1,10 @@
+# base
+*.pyc
+*.sqlite3
+
+
+# env data
+/.venv
+
+# media
+/media

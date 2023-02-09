@@ -10,7 +10,7 @@
                 <label class="form-label">Название мероприятие: {{ contest.title }}</label>
             </div>
             <div class="mb-3">
-                <label class="form-label">ФИО ученика: {{ contest.students_name }}</label>
+                <label class="form-label">ФИО ученика: {{ contest.student }}</label>
             </div>
             <div class="mb-3">
                 <label class="form-label">ФИО руководителя: {{ contest.teachers_name }}</label>
@@ -28,7 +28,7 @@
                 <label class="form-label">Предмет: {{ contest.subject }}</label>
             </div>
             <div class="mb-3">
-                <label class="form-label">Класс: {{ contest.school_parallel|add:contest.school_сlass }}</label>
+                <label class="form-label">Класс: {{ contest.student.school_parallel|add:contest.student.school_сlass }}</label>
             </div>
             <div class="mb-3">
                 <label class="form-label">Этап: {{ contest.stage }}</label>

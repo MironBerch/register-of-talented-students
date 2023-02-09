@@ -1,5 +1,7 @@
 from django.db import models
-from users.models import User 
+from users.models import User
+
+from students.models import Student
 
 
 class Contest(models.Model):
@@ -53,36 +55,49 @@ class Contest(models.Model):
         ('Участник', 'Участник'),
         ('Дипломат', 'Дипломат'),
     )
-    PARALLEL_CHOICES = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-        ('6', '6'),
-        ('7', '7'),
-        ('8', '8'),
-        ('9', '9'),
-        ('10', '10'),
-        ('11', '11'),
+    contest_creater = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
     )
-    CLASS_CHOICES = (
-        ('а', 'а'),
-        ('б', 'б'),
-        ('в', 'в'),
-    )
-    contest_creater = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
     creation_date = models.DateField(auto_now_add=True)
     modified_date = models.DateField(auto_now=True)
     event_date = models.DateField(editable=True,)
     title = models.CharField(max_length=100)
-    students_name = models.CharField(max_length=100)
-    other = models.TextField(blank=True, null=True)
-    teachers_name = models.CharField(max_length=100, blank=True, null=True)
-    stage = models.CharField(choices=STAGE_CHOICES, max_length=25)
-    direction = models.CharField(choices=DIRECTION_CHOICES, max_length=25)
-    subject = models.CharField(choices=SUBJECT_CHOICES, max_length=25)
-    school_parallel = models.CharField(choices=PARALLEL_CHOICES, max_length=2)
-    school_сlass = models.CharField(choices=CLASS_CHOICES, max_length=2)
-    scan_diploma = models.FileField(upload_to='diplom_scans/', null=True, blank=True)
-    result = models.CharField(choices=RESULT_CHOICES, max_length=25)
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+    )
+    other = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='teacher comment',
+    )
+    teachers_name = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+    stage = models.CharField(
+        choices=STAGE_CHOICES,
+        max_length=25,
+    )
+    direction = models.CharField(
+        choices=DIRECTION_CHOICES,
+        max_length=25,
+    )
+    subject = models.CharField(
+        choices=SUBJECT_CHOICES,
+        max_length=25,
+    )
+    
+    scan_diploma = models.FileField(
+        upload_to='diplom_scans/',
+        null=True,
+        blank=True,
+    )
+    result = models.CharField(
+        choices=RESULT_CHOICES,
+        max_length=25,
+    )
