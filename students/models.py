@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class StudentsBase(models.Model):
+    file = models.FileField(upload_to='students/')
+
+
 class Student(models.Model):
     PARALLEL_CHOICES = (
         ('1', '1'),

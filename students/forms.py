@@ -1,7 +1,10 @@
 from django import forms
 
-from students.models import Student
+from students.models import StudentsBase
 
 
-class StudentsImportForm(forms.Form):
-    file = forms.FileField()
+class StudentsImportForm(forms.ModelForm):
+
+    class Meta:
+        model = StudentsBase
+        fields = ('file',)
