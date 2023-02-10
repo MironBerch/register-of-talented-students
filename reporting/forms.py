@@ -2,6 +2,7 @@ from django import forms
 
 from reporting.models import Contest
 from students.models import Student
+from students.services import get_learning_students
 
 
 class ContestForm(forms.ModelForm):
@@ -33,16 +34,20 @@ class ContestForm(forms.ModelForm):
         widget=forms.Select,
         choices=CLASS_CHOICES,
     )
-
+    event_date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+            }
+        ),
+    )
+    student = forms.ModelChoiceField(
+            queryset=get_learning_students(),
+        )
     class Meta:
         model = Contest
         fields = ('event_date', 'title', 'student', 'other', 'teachers_name', 'stage', 'direction', 'subject', 'result', 'scan_diploma',)
         widgets = {
-            'event_date': forms.DateInput(
-                attrs={
-                    'placeholder': '19.01.2023',
-                }
-            ),
             'scan_diploma': forms.FileInput(
                 attrs={
                     'id': 'formFile',

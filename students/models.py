@@ -39,6 +39,7 @@ class Student(models.Model):
         max_length=2,
         verbose_name='school сlass',
     )
+    is_learns = models.BooleanField(default=True)
 
     def __str__(self):
         return self.full_name

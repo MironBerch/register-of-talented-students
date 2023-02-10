@@ -1,9 +1,10 @@
 import openpyxl
 
-from students.services import create_student, search_student, update_student
+from students.services import create_student, search_student, update_student, deduct_students
 
 
 def import_students(filepath):
+    deduct_students()
     workbook = openpyxl.load_workbook(filename=filepath)
     
     sheet = workbook.worksheets[0]
@@ -18,10 +19,12 @@ def import_students(filepath):
                 full_name=full_name,
                 school_parallel=school_parallel,
                 school_сlass=school_сlass,
+                is_learns=True,
             )
         else:
             create_student(
                 full_name=full_name,
                 school_parallel=school_parallel,
                 school_сlass=school_сlass,
+                is_learns=True,
             )
