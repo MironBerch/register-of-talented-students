@@ -1,6 +1,7 @@
+from django.shortcuts import get_object_or_404
+
 from students.models import Student, StudentsBase
 from reporting.models import Contest
-from django.shortcuts import get_object_or_404
 
 
 def get_all_students():

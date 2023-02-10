@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
-from reporting.forms import ContestForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-from reporting.export import export_contest_to_excel
 import os
-from reporting.services import get_all_contests, get_users_creation_contests, get_contest
+from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
+
+from reporting.forms import ContestForm
+from reporting.services import get_all_contests, get_users_creation_contests, get_contest
+from reporting.export import export_contest_to_excel
 
 
 class ContestCreateView(

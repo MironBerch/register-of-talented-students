@@ -8,6 +8,7 @@ def format_date(input_date: str) -> str:
     date = day + '.' + mounth + '.' + year
     return date
 
+
 def export_contest_to_excel(contests) -> None:
     contests = contests.order_by('creation_date')
 

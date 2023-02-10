@@ -6,10 +6,12 @@ def get_contest(id):
     contest = Contest.objects.get(id=id)
     return contest
 
+
 def get_all_contests():
     """return all contests"""
     contests = Contest.objects.all().order_by('-id')
     return contests
+
 
 def get_users_creation_contests(request):
     """return contests which created by user"""

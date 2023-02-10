@@ -1,12 +1,14 @@
+import os
 from django.shortcuts import redirect
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from students.services import get_student_contest_by_id, get_student_by_id
 from users.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
 from students.input import import_students
-import os
-from django.contrib.auth.mixins import LoginRequiredMixin
-from students.services import get_student_contest_by_id, get_student_by_id
+
 
 class ImportStudentsView(
     SuperUserRequiredMixin,

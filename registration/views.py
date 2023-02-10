@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from users.forms import SignupForm, SigninForm
-from users.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic.base import TemplateResponseMixin
-from registration.mixins import AnonymousUserRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from registration.mixins import AnonymousUserRequiredMixin
+from users.forms import SignupForm, SigninForm
+from users.models import User
 
 
 class SignupView(

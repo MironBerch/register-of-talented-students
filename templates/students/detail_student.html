@@ -11,7 +11,13 @@
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h5 class="card-title">{{contest.title}}</h5>
-                <p class="card-text">Участвовал: {{ contest.student }}<br>Педагог: {{ contest.teachers_name }}<br>Результат: {{ contest.result }}<br>Дата мероприятия: {{ contest.event_date }}<br>Дата учёта мероприятия: {{ contest.creation_date }}</p>
+                <p class="card-text">
+                    Участвовал: <a href="{% url 'student_view' contest.student.id %}">{{ contest.student }}</a><br>
+                    Педагог: {{ contest.teachers_name }}<br>
+                    Результат: {{ contest.result }}<br>
+                    Дата мероприятия: {{ contest.event_date }}<br>
+                    Дата учёта мероприятия: {{ contest.creation_date }}
+                </p>
                 <a href="{% url 'detail' contest.id %}" type="button" class="btn btn-outline-primary">Просмотреть</a>
                 <a href="{% url 'update' contest.id %}" type="button" class="btn btn-outline-primary">Изменить</a>
                 <a href="{% url 'delete' contest.id %}" type="button" class="btn btn-outline-primary">Удалить</a>
