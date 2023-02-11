@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 
-from students.models import Student, StudentsBase
+from students.models import Student, StudentsBase, Class
 from reporting.models import Contest
 
 
@@ -27,18 +27,16 @@ def search_student(full_name) -> bool:
     return student
 
 
-def create_student(full_name, school_parallel, school_сlass, is_learns) -> None:
+def create_student(full_name, school_сlass, is_learns) -> None:
     Student.objects.create(
         full_name=full_name,
-        school_parallel=school_parallel,
         school_сlass=school_сlass,
         is_learns=is_learns,
     )
 
 
-def update_student(full_name, school_parallel, school_сlass, is_learns) -> None:
+def update_student(full_name, school_сlass, is_learns) -> None:
     student = Student.objects.get(full_name=full_name)
-    student.school_parallel = school_parallel
     student.school_сlass = school_сlass
     student.is_learns = is_learns
     student.save()
@@ -60,3 +58,13 @@ def get_student_contest_by_id(id):
 def get_student_by_id(id):
     student = get_object_or_404(Student, id=id)
     return student
+
+
+def get_student_class(school_class):
+    student_class = Class.objects.get(school_class=school_class)
+    return student_class
+
+
+def get_all_classes():
+    school_class = Class.objects.all()
+    return school_class
