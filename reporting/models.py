@@ -68,6 +68,8 @@ class Contest(models.Model):
     student = models.ForeignKey(
         Student,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
     other = models.TextField(
         blank=True,
@@ -91,7 +93,6 @@ class Contest(models.Model):
         choices=SUBJECT_CHOICES,
         max_length=25,
     )
-    
     scan_diploma = models.FileField(
         upload_to='diplom_scans/',
         null=True,

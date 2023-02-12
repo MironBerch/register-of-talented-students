@@ -68,3 +68,14 @@ def get_student_class(school_class):
 def get_all_classes():
     school_class = Class.objects.all()
     return school_class
+
+
+def get_students_by_class(school_class):
+    students = get_learning_students()
+    students = students.filter(school_сlass__school_сlass=school_class)
+    return students
+
+
+def get_student_by_full_name(full_name):
+    student = Student.objects.get(full_name=full_name)
+    return student

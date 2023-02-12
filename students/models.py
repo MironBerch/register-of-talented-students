@@ -23,6 +23,7 @@ class Student(models.Model):
     school_сlass = models.ForeignKey(
         Class,
         on_delete=models.PROTECT,
+        related_name='school_сlass',
     )
     is_learns = models.BooleanField(default=True)
 

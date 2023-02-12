@@ -13,12 +13,21 @@
                     {{ form.title|addclass:'form-control' }}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Класс*</label>
-                    {{ form.school_сlass|addclass:'form-control' }}
+                        <label class="form-label">Класс ученика*</label>
+                        <select 
+                            class="form-select"
+                            name="school_class"
+                            hx-get="{% url 'render_students_select' %}" 
+                            hx-trigger="change" 
+                            hx-target="#students_select">
+                                <option selected>---------</option>
+                                {% for class in classes %}
+                                    <option value="{{ class.id }}">{{ class }}</option>
+                                {% endfor %}
+                        </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Фио ученика*</label>
-                    {{ form.student|addclass:'form-control' }}
+                <div id="students_select">
+                    {% include 'includes/students_select.html' %}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">ФИО руководителя</label>
@@ -57,4 +66,5 @@
             </form>
         </div>
     </div>
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
 {% endblock content %}
