@@ -60,8 +60,8 @@ def get_student_by_id(id):
     return student
 
 
-def get_student_class(school_class):
-    student_class = Class.objects.get(school_class=school_class)
+def get_school_class(school_class):
+    student_class = get_object_or_404(Class, school_class=school_class)
     return student_class
 
 
