@@ -20,9 +20,9 @@
                         hx-get="{% url 'render_students_select' %}" 
                         hx-trigger="change" 
                         hx-target="#students_select">
-                            <option value="{{ class.id }}">{{ contest.student.school_сlass }}</option>
+                            <option value="{{ class }}">{{ contest.student.school_сlass }}</option>
                             {% for class in classes %}
-                                <option value="{{ class.id }}">{{ class }}</option>
+                                <option value="{{ class }}">{{ class }}</option>
                             {% endfor %}
                     </select>
                 </div>
