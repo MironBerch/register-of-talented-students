@@ -10,6 +10,7 @@
                 {% csrf_token %}
                 <div>
                     {{ form.file|addclass:'form-control form-control-lg' }}
+                    <a href="{% url 'download_students_import_example' %}" class="btn btn-link">Скачать пример</a>
                     <br>
                 </div>
                 <div class="d-grid gap-2">

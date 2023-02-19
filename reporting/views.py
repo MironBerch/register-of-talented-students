@@ -169,9 +169,6 @@ class ContestExportView(LoginRequiredMixin, View):
 
 def render_students_select(request):
     school_class = request.GET.get('school_class')
-    print(
-        school_class
-    )
     context = {
         'students': get_students_by_class(school_class),
     }

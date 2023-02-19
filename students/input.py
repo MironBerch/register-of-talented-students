@@ -8,7 +8,12 @@ def import_students(filepath):
     workbook = openpyxl.load_workbook(filename=filepath)
     
     sheet = workbook.worksheets[0]
+    
     for row in sheet.iter_rows():
+        
+        if row[0].value == '№ п/п':
+            continue
+
         name = str(row[4].value)
         surname = str(row[3].value)
         patronymic = str(row[5].value)
@@ -16,6 +21,10 @@ def import_students(filepath):
         class_letter = str(row[2].value)
         
         school_сlass = class_digit + class_letter
+        
+        if not patronymic:
+            patronymic = ' '
+        
         full_name = surname + ' ' + name + ' ' + patronymic
         
         if search_student(full_name=full_name):

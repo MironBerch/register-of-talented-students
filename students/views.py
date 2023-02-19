@@ -1,8 +1,9 @@
 import os
-from django.shortcuts import redirect
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import FileResponse
 
 from students.services import get_student_contest_by_id, get_student_by_id
 from users.mixins import SuperUserRequiredMixin
@@ -59,3 +60,12 @@ class StudentDetailView(
                 'student': get_student_by_id(id=id)
             },
         )
+
+
+def download_students_import_example(request):
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    filename = 'students_import_example.xlsx'
+    filepath = BASE_DIR + '/media/' + filename
+    file = open(filepath, 'rb')
+    response = FileResponse(file)
+    return response
