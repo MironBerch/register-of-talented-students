@@ -28,5 +28,4 @@ class ContestAdmin(admin.ModelAdmin):
         'title',
         'student',
         'contest_creater',
-        'creation_date',
     )

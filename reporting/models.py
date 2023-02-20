@@ -60,45 +60,69 @@ class Contest(models.Model):
         on_delete=models.PROTECT,
         null=True,
         blank=True,
+        verbose_name='Создатель учёта мероприятия',
     )
-    creation_date = models.DateField(auto_now_add=True)
-    modified_date = models.DateField(auto_now=True)
-    event_date = models.DateField(editable=True,)
-    title = models.CharField(max_length=100)
+    creation_date = models.DateField(
+        auto_now_add=True,
+        verbose_name='Дата учёта мероприятия',
+    )
+    modified_date = models.DateField(
+        auto_now=True,
+        verbose_name='Дата последнего изменения учёта',
+    )
+    event_date = models.DateField(
+        editable=True,
+        verbose_name='Дата проведения мероприятия',
+    )
+    title = models.CharField(
+        max_length=100,
+        verbose_name='Название мероприятия',
+    )
     student = models.ForeignKey(
         Student,
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        verbose_name='Ученик учавствующий в мероприятии',
     )
     other = models.TextField(
         blank=True,
         null=True,
-        verbose_name='teacher comment',
+        verbose_name='Комментарии учителя',
     )
     teachers_name = models.CharField(
         max_length=100,
         blank=True,
         null=True,
+        verbose_name='ФИО ответсвенного руководителя',
     )
     stage = models.CharField(
         choices=STAGE_CHOICES,
         max_length=25,
+        verbose_name='Этап мероприятия',
     )
     direction = models.CharField(
         choices=DIRECTION_CHOICES,
         max_length=25,
+        verbose_name='Направление мероприятия',
     )
     subject = models.CharField(
         choices=SUBJECT_CHOICES,
         max_length=25,
+        verbose_name='Предметная область мероприятия',
     )
     scan_diploma = models.FileField(
         upload_to='diplom_scans/',
         null=True,
         blank=True,
+        verbose_name='Скан диплома',
     )
     result = models.CharField(
         choices=RESULT_CHOICES,
         max_length=25,
+        verbose_name='Результат мероприятия',
     )
+
+    class Meta:
+        verbose_name = 'Мероприятие'
+        verbose_name_plural = 'Мероприятия'
