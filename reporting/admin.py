@@ -7,10 +7,8 @@ from reporting.models import Contest
 class ContestAdmin(admin.ModelAdmin):
     readonly_fields = ('creation_date', 'modified_date')
     list_display = (
-        'contest_creater',
         'title',
         'student',
-        'teachers_name',
         'stage',
         'direction',
         'subject',

@@ -13,7 +13,7 @@
                 <label class="form-label">ФИО ученика: <a href="{% url 'student_view' contest.student.id %}">{{ contest.student }}</a></label>
             </div>
             <div class="mb-3">
-                <label class="form-label">ФИО руководителя: {{ contest.teachers_name }}</label>
+                <label class="form-label">ФИО руководителя: {% if contest.teachers_name %}{{ contest.teachers_name }}{% else %}Нет{% endif %}</label>
             </div>
             <div class="mb-3">
                 <label class="form-label">Дата мероприятия: {{ contest.event_date }}</label>

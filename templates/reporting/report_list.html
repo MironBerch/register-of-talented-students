@@ -15,7 +15,7 @@
                 <h5 class="card-title">{{contest.title}}</h5>
                 <p class="card-text">
                     Участвовал: <a href="{% url 'student_view' contest.student.id %}">{{ contest.student }}</a><br>
-                    Педагог: {{ contest.teachers_name }}<br>
+                    Педагог: {% if contest.teachers_name %}{{ contest.teachers_name }}{% else %}Нет{% endif %}<br>
                     Результат: {{ contest.result }}<br>
                     Дата мероприятия: {{ contest.event_date }}<br>
                     Дата учёта мероприятия: {{ contest.creation_date }}</p>

@@ -73,7 +73,7 @@ def get_all_classes():
 def get_students_by_class(school_class):
     student_class = get_object_or_404(Class, school_class=school_class)
     students = get_learning_students()
-    students = Student.objects.filter(school_сlass=student_class)
+    students = students.filter(school_сlass=student_class)
     return students
 
 
