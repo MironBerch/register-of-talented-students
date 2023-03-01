@@ -1,7 +1,7 @@
 import os
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
 
@@ -63,6 +63,7 @@ class StudentDetailView(
 
 
 def download_students_import_example(request):
+    """Download example excel file"""
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     filename = 'students_import_example.xlsx'
     filepath = BASE_DIR + '/media/' + filename

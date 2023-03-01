@@ -2,6 +2,7 @@ from django.db import models
 
 
 class StudentsBase(models.Model):
+    """Students excel table"""
     file = models.FileField(upload_to='students/')
 
     class Meta:

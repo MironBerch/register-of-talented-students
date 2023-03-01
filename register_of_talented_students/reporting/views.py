@@ -89,7 +89,6 @@ class ContestUpdateView(
             },
         )
 
-
     def post(self, request, id):
         contest = get_contest(id=id)
         form = ContestUpdateForm(request.POST or None, instance=contest, files=request.FILES or None)
@@ -168,6 +167,7 @@ class ContestExportView(LoginRequiredMixin, View):
     
 
 def render_students_select(request):
+    """render students select by using htmx"""
     school_class = request.GET.get('school_class')
     context = {
         'students': get_students_by_class(school_class),

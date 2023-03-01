@@ -23,6 +23,7 @@ class ContestForm(forms.ModelForm):
             ),
         }
 
+
 class ContestUpdateForm(ContestForm):
     event_date = forms.DateField(
         widget=forms.DateInput(),

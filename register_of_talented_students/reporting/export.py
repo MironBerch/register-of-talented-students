@@ -2,6 +2,8 @@ from openpyxl import Workbook
 
 
 def format_date(input_date: str) -> str:
+    """Format contest date for cell"""
+
     day = input_date[8:10]
     mounth = input_date[5:7]
     year = input_date[0:4]
@@ -10,6 +12,7 @@ def format_date(input_date: str) -> str:
 
 
 def export_contest_to_excel(contests) -> None:
+    """Export contests to excel table"""
     contests = contests.order_by('creation_date')
 
     wb = Workbook()

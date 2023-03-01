@@ -4,6 +4,7 @@ from students.services import create_student, search_student, update_student, de
 
 
 def import_students(filepath):
+    """Import students excel table to database"""
     deduct_students()
     workbook = openpyxl.load_workbook(filename=filepath)
     
