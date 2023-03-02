@@ -4,12 +4,40 @@ from reporting.views import ContestCreateView, ContestListView, ContestUpdateVie
 
 
 urlpatterns = [
-    path('', ContestListView.as_view(), name='list'),
-    path('create', ContestCreateView.as_view(), name='create'),
-    path('export', ContestExportView.as_view(), name='export'),
-    path('update/<int:id>', ContestUpdateView.as_view(), name='update'),
-    path('delete/<int:id>', ContestDeleteView.as_view(), name='delete'),
-    path('detail/<int:id>', ContestDetailView.as_view(), name='detail'),
-    
-    path('render_students_select/', render_students_select, name='render_students_select')
+    path(
+        route='',
+        view=ContestListView.as_view(),
+        name='list',
+    ),
+    path(
+        route='create/',
+        view=ContestCreateView.as_view(),
+        name='create',
+    ),
+    path(
+        route='export/',
+        view=ContestExportView.as_view(),
+        name='export',
+    ),
+    path(
+        route='update/<int:id>/',
+        view=ContestUpdateView.as_view(),
+        name='update',
+    ),
+    path(
+        route='delete/<int:id>/',
+        view=ContestDeleteView.as_view(),
+        name='delete',
+    ),
+    path(
+        route='detail/<int:id>/',
+        view=ContestDetailView.as_view(),
+        name='detail',
+    ),
+
+    path(
+        route='render_students_select/',
+        view=render_students_select,
+        name='render_students_select',
+    ),
 ]

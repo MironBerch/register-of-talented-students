@@ -4,7 +4,19 @@ from registration.views import SignupView, SigninView, SignoutView
 
 
 urlpatterns = [
-    path('signup', SignupView.as_view(), name='signup'),
-    path('signin', SigninView.as_view(), name='signin'),
-    path('signout', SignoutView.as_view(), name='signout'),
+    path(
+        route='signup/',
+        view=SignupView.as_view(),
+        name='signup',
+    ),
+    path(
+        route='signin/',
+        view=SigninView.as_view(),
+        name='signin',
+    ),
+    path(
+        route='signout/',
+        view=SignoutView.as_view(),
+        name='signout',
+    ),
 ]

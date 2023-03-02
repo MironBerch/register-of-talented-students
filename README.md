@@ -2,13 +2,13 @@
 ## Technology stack:
 Python 3, Django 4, openpyxl
 ## Steps to be followed for first time use
-- Run this command - it redirects to the code directory
-```
-cd register_of_talented_students
-```
 - Run this command - it download requirements
 ```
 pip install -r requirements.txt
+```
+- Run this command - it redirects to the code directory
+```
+cd register_of_talented_students
 ```
 - Run these commands - they create database
 ```
