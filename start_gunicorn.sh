@@ -1,3 +1,3 @@
 #!/bin/bash
-.venv/Scripts/activate
-exec gunicorn - c 'C:/Users/MIRON/Documents/GitHub/register_of_talented_students/register_of_talented_students/gunicorn_config.py' config.wsgi
+source /home/miron/Documents/register_of_talented_students/.venv/bin/activate
+exec gunicorn -c '/home/miron/Documents/register_of_talented_students/register_of_talented_students/gunicorn_config.py' config.wsgi
