@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateResponseMixin
 
-from users.mixins import SuperUserRequiredMixin
+from accounts.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
 from students.input import import_students
 from students.services import get_student_contest_by_id, get_student_by_id

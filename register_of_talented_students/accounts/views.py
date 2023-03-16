@@ -5,9 +5,9 @@ from django.contrib import messages
 from django.views.generic.base import TemplateResponseMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from registration.mixins import AnonymousUserRequiredMixin
-from users.forms import SignupForm, SigninForm
-from users.models import User
+from accounts.mixins import AnonymousUserRequiredMixin
+from accounts.forms import SignupForm, SigninForm
+from accounts.models import User
 
 
 class SignupView(
