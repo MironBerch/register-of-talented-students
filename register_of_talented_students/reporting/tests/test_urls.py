@@ -4,7 +4,7 @@ from django.test import SimpleTestCase
 from reporting.views import ContestCreateView, ContestListView, ContestUpdateView, ContestDeleteView, ContestDetailView, ContestExportView,render_students_select
 
 
-class TestUrls(SimpleTestCase):
+class TestContestUrls(SimpleTestCase):
 
     def test_contest_create_view_is_resolved(self):
         url = reverse('create')

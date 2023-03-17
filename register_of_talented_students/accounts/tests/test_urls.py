@@ -4,7 +4,7 @@ from django.test import SimpleTestCase
 from accounts.views import SignupView, SigninView, SignoutView 
 
 
-class TestUrls(SimpleTestCase):
+class TestUserUrls(SimpleTestCase):
 
     def test_signup_view_is_resolved(self):
         url = reverse('signup')

@@ -76,7 +76,7 @@ def get_school_class(school_class):
 
 def get_all_classes():
     """Get all classes"""
-    school_class = Class.objects.all().order_by('school_class')
+    school_class = Class.objects.all()
     return school_class
 
 

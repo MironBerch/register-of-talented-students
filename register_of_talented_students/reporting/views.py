@@ -52,17 +52,20 @@ class ContestListView(
     TemplateResponseMixin,
     View,
 ):
+
+    template_name = 'reporting/report_list.html'
+
     def get(self, request):
         if request.user.is_superuser:
             contests = get_all_contests()
         else:
             contests = get_users_creation_contests(request=request)
 
-        context = {
-            'contests': contests,
-        }
-        
-        return render(request, 'reporting/report_list.html', context)
+        return self.render_to_response(
+            context = {
+                'contests': contests,
+            },
+        )
 
 
 class ContestUpdateView(
