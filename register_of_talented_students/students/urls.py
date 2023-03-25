@@ -10,7 +10,7 @@ urlpatterns = [
         name='import_students',
     ),
     path(
-        route='students/<id>/',
+        route='students/<int:id>/',
         view=StudentDetailView.as_view(),
         name='student_view',
     ),

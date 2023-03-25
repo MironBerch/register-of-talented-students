@@ -12,7 +12,7 @@ def format_date(input_date: str) -> str:
 
 
 def export_contest_to_excel(contests) -> None:
-    """Export contests to excel table"""
+    """Export contests data to excel table"""
     contests = contests.order_by('creation_date')
 
     wb = Workbook()

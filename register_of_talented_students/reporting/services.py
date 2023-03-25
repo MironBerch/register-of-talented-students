@@ -1,7 +1,7 @@
 from reporting.models import Contest
 
 
-def get_contest(id):
+def get_contest(id: int):
     """return contest by id"""
     contest = Contest.objects.get(id=id)
     return contest

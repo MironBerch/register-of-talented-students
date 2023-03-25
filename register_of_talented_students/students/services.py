@@ -10,7 +10,7 @@ def get_all_students():
     return students
 
 
-def deduct_students():
+def deduct_students() -> None:
     """Deduct all students"""
     students = Student.objects.all()
     for student in students:
@@ -30,7 +30,7 @@ def search_student(full_name) -> bool:
     return student
 
 
-def create_student(full_name, school_сlass, is_learns) -> None:
+def create_student(full_name: str, school_сlass: str, is_learns: bool) -> None:
     """Create new student"""
     Student.objects.create(
         full_name=full_name,
@@ -39,7 +39,7 @@ def create_student(full_name, school_сlass, is_learns) -> None:
     )
 
 
-def update_student(full_name, school_сlass, is_learns) -> None:
+def update_student(full_name: str, school_сlass: str, is_learns: bool) -> None:
     """Update student"""
     student = Student.objects.get(full_name=full_name)
     student.school_сlass = school_сlass
@@ -55,20 +55,20 @@ def get_learning_students():
     return students
 
 
-def get_student_contest_by_id(id):
+def get_student_contest_by_id(id: int):
     """Get student contests"""
     student = get_object_or_404(Student, id=id)
     contests = Contest.objects.filter(student=student)
     return contests
 
 
-def get_student_by_id(id):
+def get_student_by_id(id: int):
     """Get student by id"""
     student = get_object_or_404(Student, id=id)
     return student
 
 
-def get_school_class(school_class):
+def get_school_class(school_class: str):
     """Get school class model by school class name"""
     student_class = get_object_or_404(Class, school_class=school_class)
     return student_class
@@ -80,7 +80,7 @@ def get_all_classes():
     return school_class
 
 
-def get_students_by_class(school_class):
+def get_students_by_class(school_class: str):
     """Get students which learns at class"""
     student_class = get_object_or_404(Class, school_class=school_class)
     students = get_learning_students()
@@ -88,7 +88,7 @@ def get_students_by_class(school_class):
     return students
 
 
-def get_student_by_full_name(full_name):
+def get_student_by_full_name(full_name: str):
     """Get student by full name"""
     student = Student.objects.get(full_name=full_name)
     return student
