@@ -6,7 +6,7 @@ from reporting.models import Contest
 
 def get_all_students():
     """return all students"""
-    students = Student.objects.all()
+    students = Student.objects.all().order_by('full_name')
     return students
 
 
@@ -92,3 +92,10 @@ def get_student_by_full_name(full_name: str):
     """Get student by full name"""
     student = Student.objects.get(full_name=full_name)
     return student
+
+
+def create_school_class_if_not_exist(school_class: str) -> None:
+    if not Class.objects.filter(school_class=school_class).exists():
+        Class.objects.create(
+            school_class=school_class,
+        )

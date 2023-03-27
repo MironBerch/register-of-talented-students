@@ -1,6 +1,6 @@
 import openpyxl
 
-from students.services import create_student, search_student, update_student, deduct_students, get_school_class
+from students.services import create_student, search_student, update_student, deduct_students, get_school_class, create_school_class_if_not_exist
 
 
 def import_students(filepath):
@@ -27,22 +27,24 @@ def import_students(filepath):
         class_digit = str(row[class_digit_index].value)
         class_letter = str(row[class_letter_index].value)
         
-        school_сlass = class_digit + class_letter
+        school_class = class_digit + class_letter
         
         if not patronymic:
             patronymic = ' '
         
         full_name = surname + ' ' + name + ' ' + patronymic
         
+        create_school_class_if_not_exist(school_class=school_class)
+
         if search_student(full_name=full_name):
             update_student(
                 full_name=full_name,
-                school_сlass=get_school_class(school_сlass),
+                school_сlass=get_school_class(school_class),
                 is_learns=True,
             )
         else:
             create_student(
                 full_name=full_name,
-                school_сlass=get_school_class(school_сlass),
+                school_сlass=get_school_class(school_class),
                 is_learns=True,
             )

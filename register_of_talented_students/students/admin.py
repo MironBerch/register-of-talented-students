@@ -20,5 +20,11 @@ class UserAdmin(admin.ModelAdmin):
     )
 
 
+@admin.register(Class)
+class ClassAdmin(admin.ModelAdmin):
+    list_display = (
+        'school_class',
+    )
+
+
 admin.site.register(StudentsBase)
-admin.site.register(Class)

@@ -13,6 +13,7 @@ class StudentsBase(models.Model):
 class Class(models.Model):
     school_class = models.CharField(
         max_length=50,
+        unique=True,
         verbose_name='Школьный класс',
     )
 
