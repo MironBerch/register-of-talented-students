@@ -9,7 +9,7 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('reporting.urls')),
     path('', include('students.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 handler400 = 'core.views.bad_request_view'

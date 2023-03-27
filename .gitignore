@@ -4,7 +4,14 @@
 
 
 # env data
-register_of_talented_students/.venv
+.venv
+venv
+env
+env.dev
+env.prod
+env*
+venv*
+venv/
 
 # media
 /media/students
