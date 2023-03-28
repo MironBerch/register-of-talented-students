@@ -9,7 +9,7 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('reporting.urls')),
     path('', include('students.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
 
 handler400 = 'core.views.bad_request_view'
@@ -20,3 +20,5 @@ handler500 = 'core.views.server_error_view'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

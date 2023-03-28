@@ -51,7 +51,7 @@ def get_learning_students():
     """Get all learning students"""
     students = Student.objects.filter(
         is_learns=True,
-    )
+    ).order_by('full_name')
     return students
 
 
@@ -76,8 +76,16 @@ def get_school_class(school_class: str):
 
 def get_all_classes():
     """Get all classes"""
-    school_class = Class.objects.all()
-    return school_class
+    school_classes = Class.objects.all()
+    classes_list = []
+    for school_class in school_classes:
+        classes_list.append(school_class.school_class)
+    classes_list.sort(key=lambda x: (int(x[:-1]), x[-1]))
+    ordered_school_classes = []
+    for school_class in classes_list:
+        school_class = Class.objects.get(school_class=school_class)
+        ordered_school_classes.append(school_class)
+    return ordered_school_classes
 
 
 def get_students_by_class(school_class: str):
@@ -85,6 +93,7 @@ def get_students_by_class(school_class: str):
     student_class = get_object_or_404(Class, school_class=school_class)
     students = get_learning_students()
     students = students.filter(school_сlass=student_class)
+    students.order_by('full_name')
     return students
 
 
