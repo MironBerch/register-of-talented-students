@@ -1,6 +1,7 @@
 import openpyxl
 
-from students.services import create_student, search_student, update_student, deduct_students, get_school_class, create_school_class_if_not_exist
+from students.services import create_student, search_student, update_student, deduct_students
+from school_classes.services import get_school_class, create_school_class_if_not_exist
 
 
 def import_students(filepath):

@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'reporting',
     'core',
     'students',
+    'school_classes',
 ]
 
 

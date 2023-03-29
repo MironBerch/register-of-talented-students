@@ -1,5 +1,7 @@
 from django.db import models
 
+from school_classes.models import Class
+
 
 class StudentsBase(models.Model):
     """Students excel table"""
@@ -8,21 +10,6 @@ class StudentsBase(models.Model):
     class Meta:
         verbose_name = 'Список учащихся'
         verbose_name_plural = "Списки учащихся"
-
-
-class Class(models.Model):
-    school_class = models.CharField(
-        max_length=50,
-        unique=True,
-        verbose_name='Школьный класс',
-    )
-
-    def __str__(self):
-        return self.school_class
-
-    class Meta:
-        verbose_name = 'Школьный класс'
-        verbose_name_plural = 'Школьные классы'
 
 
 class Student(models.Model):

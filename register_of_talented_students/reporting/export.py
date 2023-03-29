@@ -42,7 +42,7 @@ def export_contest_to_excel(contests) -> None:
     ws.column_dimensions['F'].width = 20
     ws.column_dimensions['G'].width = 20
     ws.column_dimensions['H'].width = 20
-    ws.column_dimensions['I'].width = 50
+    ws.column_dimensions['I'].width = 30
     ws.column_dimensions['J'].width = 15
     ws.column_dimensions['K'].width = 15
     ws.column_dimensions['L'].width = 15
