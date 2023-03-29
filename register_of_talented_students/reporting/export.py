@@ -34,6 +34,20 @@ def export_contest_to_excel(contests) -> None:
     ws['K1'] = 'Дата учёта'
     ws['L1'] = 'Дата последнего изменения'
 
+    ws.column_dimensions['A'].width = 25
+    ws.column_dimensions['B'].width = 40
+    ws.column_dimensions['C'].width = 40
+    ws.column_dimensions['D'].width = 20
+    ws.column_dimensions['E'].width = 10
+    ws.column_dimensions['F'].width = 20
+    ws.column_dimensions['G'].width = 20
+    ws.column_dimensions['H'].width = 20
+    ws.column_dimensions['I'].width = 50
+    ws.column_dimensions['J'].width = 15
+    ws.column_dimensions['K'].width = 15
+    ws.column_dimensions['L'].width = 15
+    ws.column_dimensions['L'].size = 100
+
     letter_string = 'ABCDEFGHIJKL'
     contest_index = 1
 
