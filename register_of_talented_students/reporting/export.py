@@ -65,7 +65,7 @@ def export_contest_to_excel(contests) -> None:
             if letter_string[index] == 'D':
                 ws[cell] = str(contest.subject)
             if letter_string[index] == 'E':
-                ws[cell] = str(contest.student.school_сlass)
+                ws[cell] = str(contest.student.school_class)
             if letter_string[index] == 'F':
                 ws[cell] = str(contest.direction)
             if letter_string[index] == 'G':

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 
 from school_classes.models import Class
+from students.models import Student
 
 
 def get_school_class(school_class: str):
@@ -28,3 +29,12 @@ def create_school_class_if_not_exist(school_class: str) -> None:
         Class.objects.create(
             school_class=school_class,
         )
+
+def get_number_of_school_classes_students():
+    number_of_school_classes_students_list = []
+    school_classes = get_all_classes()
+    for school_class in school_classes:
+        number_of_school_classes_students_list.append(
+            Student.objects.filter(school_class=school_class
+        ).count())
+    return number_of_school_classes_students_list

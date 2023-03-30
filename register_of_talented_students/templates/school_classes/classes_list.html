@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} Просмотр мероприятий {{ block.super }} {% endblock %}
+{% load add_class %}
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Название</th>
+              <th scope="col">Кол-во учащихся</th>
+              <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        {% for class in school_classes %}
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{ class.school_class }}</td>
+                <td>{{ class.school_class.student.count }}</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+{% endblock content %}

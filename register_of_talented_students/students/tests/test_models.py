@@ -13,7 +13,7 @@ class TestStudentsModels(TestCase):
 
         self.student = Student.objects.create(
             full_name='Берчетов Мирон Андреевич',
-            school_сlass=self.school_class,
+            school_class=self.school_class,
             is_learns=True,
         )
 
@@ -23,5 +23,5 @@ class TestStudentsModels(TestCase):
     def test_student_fields(self):
         """Test student fields"""
         self.assertAlmostEquals(self.student.full_name, 'Берчетов Мирон Андреевич')
-        self.assertAlmostEquals(str(self.student.school_сlass), '9в')
+        self.assertAlmostEquals(str(self.student.school_class), '9в')
         self.assertAlmostEquals(self.student.is_learns, True)    

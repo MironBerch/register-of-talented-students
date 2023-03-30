@@ -21,7 +21,7 @@ class TestContestModels(TestCase):
 
         self.student = Student.objects.create(
             full_name='Name Surname Patronymic',
-            school_сlass=self.school_class,
+            school_class=self.school_class,
             is_learns=True,
         )
 

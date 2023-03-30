@@ -30,19 +30,19 @@ def search_student(full_name) -> bool:
     return student
 
 
-def create_student(full_name: str, school_сlass: str, is_learns: bool) -> None:
+def create_student(full_name: str, school_class: str, is_learns: bool) -> None:
     """Create new student"""
     Student.objects.create(
         full_name=full_name,
-        school_сlass=school_сlass,
+        school_class=school_class,
         is_learns=is_learns,
     )
 
 
-def update_student(full_name: str, school_сlass: str, is_learns: bool) -> None:
+def update_student(full_name: str, school_class: str, is_learns: bool) -> None:
     """Update student"""
     student = Student.objects.get(full_name=full_name)
-    student.school_сlass = school_сlass
+    student.school_class = school_class
     student.is_learns = is_learns
     student.save()
 
@@ -72,7 +72,7 @@ def get_students_by_class(school_class: str):
     """Get students which learns at class"""
     student_class = get_object_or_404(Class, school_class=school_class)
     students = get_learning_students()
-    students = students.filter(school_сlass=student_class)
+    students = students.filter(school_class=student_class)
     students.order_by('full_name')
     return students
 

@@ -40,12 +40,12 @@ def import_students(filepath):
         if search_student(full_name=full_name):
             update_student(
                 full_name=full_name,
-                school_сlass=get_school_class(school_class),
+                school_class=get_school_class(school_class),
                 is_learns=True,
             )
         else:
             create_student(
                 full_name=full_name,
-                school_сlass=get_school_class(school_class),
+                school_class=get_school_class(school_class),
                 is_learns=True,
             )

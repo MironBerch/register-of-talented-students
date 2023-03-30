@@ -7,16 +7,16 @@ from students.models import Student, StudentsBase
 class UserAdmin(admin.ModelAdmin):
     list_display = (
         'full_name',
-        'school_сlass',
+        'school_class',
         'is_learns',
     )
     list_filter = (
-        'school_сlass',
+        'school_class',
         'is_learns',
     )
     search_fields = (
         'full_name',
-        'school_сlass',
+        'school_class',
     )
 
 

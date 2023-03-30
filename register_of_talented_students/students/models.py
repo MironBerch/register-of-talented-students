@@ -18,10 +18,10 @@ class Student(models.Model):
         unique=True,
         verbose_name='ФИО ученика',
     )
-    school_сlass = models.ForeignKey(
+    school_class = models.ForeignKey(
         Class,
         on_delete=models.PROTECT,
-        related_name='school_сlass',
+        #related_name='school_class',
         verbose_name='Школьный класс',
     )
     is_learns = models.BooleanField(
