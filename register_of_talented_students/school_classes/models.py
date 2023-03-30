@@ -6,6 +6,7 @@ class Class(models.Model):
         max_length=50,
         unique=True,
         verbose_name='Школьный класс',
+        primary_key=True,
     )
 
     def __str__(self):

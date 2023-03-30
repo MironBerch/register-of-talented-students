@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %} {{ title }} Просмотр мероприятий {{ block.super }} {% endblock %}
-{% load add_class %}
+{% load add_index %}
 {% block content %}
     {% include 'includes/navbar.html' %}
     <br>
@@ -10,16 +10,16 @@
               <th scope="col">#</th>
               <th scope="col">Название</th>
               <th scope="col">Кол-во учащихся</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Ссылка</th>
             </tr>
         </thead>
         {% for class in school_classes %}
             <tbody>
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ class.school_class }}</td>
-                <td>{{ class.school_class.student.count }}</td>
-                <td>@mdo</td>
+                <td>{{ numbers_of_school_classes|index:forloop.counter0 }}</td>
+                <td><a href="{% url 'school_classes_students' class.school_class %}">посмотреть учащихся</a></td>
               </tr>
             </tbody>
         {% endfor %}
