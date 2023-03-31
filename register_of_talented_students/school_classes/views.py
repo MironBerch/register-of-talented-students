@@ -35,6 +35,6 @@ class SchoolClassStudentsListView(
         return self.render_to_response(
             context = {
                 'students': get_students_by_class(school_class=pk),
-                #'numbers_of_school_classes': get_number_of_school_classes_students(),
+                'school_class': pk,
             },
         )
