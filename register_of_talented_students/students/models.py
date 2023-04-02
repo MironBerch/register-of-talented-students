@@ -21,7 +21,6 @@ class Student(models.Model):
     school_class = models.ForeignKey(
         Class,
         on_delete=models.PROTECT,
-        #related_name='school_class',
         verbose_name='Школьный класс',
     )
     is_learns = models.BooleanField(
