@@ -26,11 +26,17 @@ def get_last_file():
 
 def search_student(full_name) -> bool:
     """Search student by full name"""
-    student = Student.objects.filter(full_name=full_name).exists()
+    student = Student.objects.filter(
+        full_name=full_name
+    ).exists()
     return student
 
 
-def create_student(full_name: str, school_class: str, is_learns: bool) -> None:
+def create_student(
+        full_name: str,
+        school_class: str,
+        is_learns: bool,
+) -> None:
     """Create new student"""
     Student.objects.create(
         full_name=full_name,
@@ -39,7 +45,11 @@ def create_student(full_name: str, school_class: str, is_learns: bool) -> None:
     )
 
 
-def update_student(full_name: str, school_class: str, is_learns: bool) -> None:
+def update_student(
+        full_name: str, 
+        school_class: str, 
+        is_learns: bool,
+) -> None:
     """Update student"""
     student = Student.objects.get(full_name=full_name)
     student.school_class = school_class

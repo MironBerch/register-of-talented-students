@@ -5,7 +5,9 @@ from school_classes.models import Class
 
 class StudentsBase(models.Model):
     """Students excel table"""
-    file = models.FileField(upload_to='students/')
+    file = models.FileField(
+        upload_to='students/',
+    )
 
     class Meta:
         verbose_name = 'Список учащихся'

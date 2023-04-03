@@ -15,5 +15,7 @@ def get_all_contests():
 
 def get_users_creation_contests(request):
     """return contests which created by user"""
-    contests = Contest.objects.filter(contest_creater=request.user).order_by('-id')
+    contests = Contest.objects.filter(
+        contest_creater=request.user
+    ).order_by('-id')
     return contests

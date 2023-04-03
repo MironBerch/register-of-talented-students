@@ -14,4 +14,4 @@ venv*
 venv/
 
 # media
-register_of_talented_students/media/students
+media/students

@@ -35,7 +35,11 @@ class SignupView(
             patronymic = form.cleaned_data.get('patronymic')
             password = form.cleaned_data.get('password')
             User.objects.create_user(
-                email=email, name=name, surname=surname, patronymic=patronymic, password=password,
+                email=email,
+                name=name,
+                surname=surname, 
+                patronymic=patronymic, 
+                password=password,
             )
             messages.success(request, 'Пользователь зарегистрирован. Подождите активации пользователя администратором.')
             return redirect('signin')

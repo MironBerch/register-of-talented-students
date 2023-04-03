@@ -5,7 +5,10 @@ from reporting.models import Contest
 
 @admin.register(Contest)
 class ContestAdmin(admin.ModelAdmin):
-    readonly_fields = ('creation_date', 'modified_date')
+    readonly_fields = (
+        'creation_date', 
+        'modified_date',
+    )
     list_display = (
         'title',
         'student',

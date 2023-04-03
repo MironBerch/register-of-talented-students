@@ -5,7 +5,8 @@
 - Django 4
 - SQLite
 - Bootstrap 5
-- docker 20.10
+- Nginx
+- Docker 20.10
 - docker-compose 1.20
 
 ## Start project:

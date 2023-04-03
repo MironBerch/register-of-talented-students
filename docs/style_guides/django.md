@@ -16,8 +16,7 @@ register_of_talented_students
 └───app
 |   |   __init__.py
 |   |   apps.py
-|   |   urls.py
-|   |   wsgi.py
+|   |   views.py
 │
 └───templates
 │   │   base.html
@@ -39,14 +38,14 @@ register_of_talented_students
 Example for app:
 ```
 app
-|   __init__.py
-|   admin.py
-|   apps.py
-|   forms.py
-|   models.py
-|   services.py
-|   urls.py
-|   views.py
+|───__init__.py
+|───admin.py
+|───apps.py
+|───forms.py
+|───models.py
+|───services.py
+|───urls.py
+|───views.py
 │
 └───tests
 │   │   test_services.py

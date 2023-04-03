@@ -2,7 +2,7 @@
 
 ## Overview
 
-- Python 3.9
+- Python 3.10
 - PEP8
 
 ## Comments
