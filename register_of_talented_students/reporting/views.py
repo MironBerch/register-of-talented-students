@@ -34,8 +34,10 @@ class ContestCreateView(
         form = ContestForm(request.POST or None, files=request.FILES or None)
         
         if form.is_valid():
-            contest = form.save()
-            contest.student = get_student_by_full_name(request.POST['reporting_student'])
+            contest = form.save(commit=False)
+            contest.student = get_student_by_full_name(
+                request.POST.get('reporting_student'),
+            )
             contest.contest_creater = request.user
             contest.save()
             return redirect('list')

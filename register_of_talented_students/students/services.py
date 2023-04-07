@@ -6,7 +6,9 @@ from reporting.models import Contest
 
 def get_all_students():
     """return all students"""
-    students = Student.objects.all().order_by('full_name')
+    students = (
+        Student.objects.all().order_by('full_name')
+    )
     return students
 
 
@@ -51,7 +53,9 @@ def update_student(
         is_learns: bool,
 ) -> None:
     """Update student"""
-    student = Student.objects.get(full_name=full_name)
+    student = Student.objects.get(
+        full_name=full_name,
+    )
     student.school_class = school_class
     student.is_learns = is_learns
     student.save()
@@ -68,7 +72,9 @@ def get_learning_students():
 def get_student_contest_by_id(id: int):
     """Get student contests"""
     student = get_object_or_404(Student, id=id)
-    contests = Contest.objects.filter(student=student)
+    contests = Contest.objects.filter(
+        student=student,
+    )
     return contests
 
 
@@ -82,12 +88,16 @@ def get_students_by_class(school_class: str):
     """Get students which learns at class"""
     student_class = get_object_or_404(Class, school_class=school_class)
     students = get_learning_students()
-    students = students.filter(school_class=student_class)
+    students = students.filter(
+        school_class=student_class,
+    )
     students.order_by('full_name')
     return students
 
 
 def get_student_by_full_name(full_name: str):
     """Get student by full name"""
-    student = Student.objects.get(full_name=full_name)
+    student = Student.objects.get(
+        full_name=full_name,
+    )
     return student

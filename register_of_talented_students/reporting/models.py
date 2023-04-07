@@ -4,6 +4,15 @@ from accounts.models import User
 from students.models import Student
 
 
+def contest_diplom_scan_path(instance, filename):
+    """Create path for diplom scans"""
+    return 'diplom_scans/{0}/{1}/{2}'.format(
+        instance.student.full_name,
+        instance.title,
+        instance.result,
+    )
+
+
 class Contest(models.Model):
     SUBJECT_CHOICES = (
         ('Русский язык', 'Русский язык'),
@@ -112,7 +121,7 @@ class Contest(models.Model):
         verbose_name='Предметная область мероприятия',
     )
     scan_diploma = models.FileField(
-        upload_to='diplom_scans/',
+        upload_to=contest_diplom_scan_path,
         null=True,
         blank=True,
         verbose_name='Скан диплома',
