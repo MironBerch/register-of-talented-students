@@ -69,6 +69,14 @@ def get_learning_students():
     return students
 
 
+def get_former_students():
+    """Get all former students"""
+    students = Student.objects.filter(
+        is_learns=False,
+    ).order_by('full_name')
+    return students
+
+
 def get_student_contest_by_id(id: int):
     """Get student contests"""
     student = get_object_or_404(Student, id=id)

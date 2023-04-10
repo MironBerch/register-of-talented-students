@@ -1,6 +1,6 @@
 from django.urls import path
 
-from students.views import ImportStudentsView, StudentDetailView, download_students_import_example
+from students.views import ImportStudentsView, StudentDetailView, FormerStudentListView, download_students_import_example
 
 
 urlpatterns = [
@@ -13,6 +13,11 @@ urlpatterns = [
         route='students/<int:id>/',
         view=StudentDetailView.as_view(),
         name='student_view',
+    ),
+    path(
+        route='students/former/',
+        view=FormerStudentListView.as_view(),
+        name='former_student_view',
     ),
     path(
         route='students/import_students/download_file_example/',

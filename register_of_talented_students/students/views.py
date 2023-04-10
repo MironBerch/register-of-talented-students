@@ -8,7 +8,7 @@ from django.views.generic.base import TemplateResponseMixin
 from accounts.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
 from students.input import import_students
-from students.services import get_student_contest_by_id, get_student_by_id
+from students.services import get_student_contest_by_id, get_student_by_id, get_former_students
 
 
 class ImportStudentsView(
@@ -58,6 +58,21 @@ class StudentDetailView(
             context = {
                 'contests': get_student_contest_by_id(id=id),
                 'student': get_student_by_id(id=id)
+            },
+        )
+
+
+class FormerStudentListView(
+    LoginRequiredMixin,
+    TemplateResponseMixin,
+    View,
+):
+    template_name = 'students/former_student.html'
+
+    def get(self, request):
+        return self.render_to_response(
+            context = {
+                'students': get_former_students()
             },
         )
 
