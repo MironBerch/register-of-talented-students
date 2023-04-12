@@ -15,6 +15,8 @@ services:
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
+    env_file:
+      - .env.prod
   nginx:
     build: ./nginx
     volumes:

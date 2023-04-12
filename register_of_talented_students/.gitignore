@@ -12,6 +12,10 @@ env.prod
 env*
 venv*
 venv/
+.env
+.env.dev
+.env.prod
 
 # media
 media/students
+media/diplom_scans

@@ -11,28 +11,13 @@
 
 ## Start project:
 
-### by using a computer
-- Run this command - it redirects to the code directory
-```
-cd register_of_talented_students
-```
-- Run this command - it download requirements
-```
-pip install -r requirements.txt
-```
-- Run these commands - they create database
-```
-python manage.py migrate
-python manage.py makemigrations
-python manage.py migrate
-```
-- Run this command - it create superuser
-```
-python manage.py createsuperuser
-```
-- Everything is done - now you can start the server
-```
-python manage.py runserver
+To run docker containers you have to create a if you want developing `.env.dev` or if add project in production `.env.prod` file in the root directory.
+
+### Example of `.env` file:
+
+```dotenv
+SECRET_KEY='django-insecure-8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t'
+DEBUG=1
 ```
 
 ### by using docker on local server

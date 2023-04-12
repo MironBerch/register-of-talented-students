@@ -24,6 +24,8 @@ register_of_talented_students
 │       │   list.html
 |       │   detail.html
 |
+└───.env.dev
+|
 └───docker-compose.yml
 |
 └───Dockerfile
