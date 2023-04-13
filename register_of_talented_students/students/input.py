@@ -1,4 +1,4 @@
-import openpyxl
+from openpyxl import load_workbook, Workbook
 
 from students.services import create_student, search_student, update_student, deduct_students
 from school_classes.services import get_school_class, create_school_class_if_not_exist
@@ -7,7 +7,7 @@ from school_classes.services import get_school_class, create_school_class_if_not
 def import_students(filepath):
     """Import students excel table to database"""
     deduct_students()
-    workbook = openpyxl.load_workbook(filename=filepath)
+    workbook = load_workbook(filename=filepath)
     
     sheet = workbook.worksheets[0]
     
@@ -49,3 +49,22 @@ def import_students(filepath):
                 school_class=get_school_class(school_class),
                 is_learns=True,
             )
+
+
+def create_import_students_example() -> None:
+    """Create example students excel table"""
+
+    wb = Workbook()
+
+    ws = wb.active
+
+    ws.title = 'example'
+
+    ws['A1'] = '№ п/п'
+    ws['B1'] = 'Этап (числовое обозначение)'
+    ws['C1'] = 'Наименование учебного коллектива'
+    ws['D1'] = 'Фамилия'
+    ws['E1'] = 'Имя'
+    ws['F1'] = 'Отчество'
+
+    wb.save('media//students_import_example.xlsx')

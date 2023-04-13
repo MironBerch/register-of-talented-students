@@ -19,7 +19,7 @@ def export_contest_to_excel(contests) -> None:
 
     ws = wb.active
 
-    ws.title = "2023"
+    ws.title = '2023'
 
     ws['A1'] = 'Название мероприятия'
     ws['B1'] = 'ФИО ученика'
@@ -56,29 +56,59 @@ def export_contest_to_excel(contests) -> None:
         for index in range(12):
             cell = letter_string[index] + str(contest_index)
             if letter_string[index] == 'A':
-                ws[cell] = str(contest.title)
+                ws[cell] = str(
+                    contest.title,
+                )
             if letter_string[index] == 'B':
-                ws[cell] = str(contest.student)
+                ws[cell] = str(
+                    contest.student,
+                )
             if letter_string[index] == 'C':
                 if contest.teachers_name:
-                    ws[cell] = str(contest.teachers_name)
+                    ws[cell] = str(
+                        contest.teachers_name,
+                    )
             if letter_string[index] == 'D':
-                ws[cell] = str(contest.subject)
+                ws[cell] = str(
+                    contest.subject,
+                )
             if letter_string[index] == 'E':
-                ws[cell] = str(contest.student.school_class)
+                ws[cell] = str(
+                    contest.student.school_class,
+                )
             if letter_string[index] == 'F':
-                ws[cell] = str(contest.direction)
+                ws[cell] = str(
+                    contest.direction,
+                )
             if letter_string[index] == 'G':
-                ws[cell] = str(contest.stage)
+                ws[cell] = str(
+                    contest.stage,
+                )
             if letter_string[index] == 'H':
-                ws[cell] = str(contest.result)
+                ws[cell] = str(
+                    contest.result,
+                )
             if letter_string[index] == 'I':
-                ws[cell] = str(contest.other)
+                ws[cell] = str(
+                    contest.other,
+                )
             if letter_string[index] == 'J':
-                ws[cell] = format_date(input_date=str(contest.event_date))
+                ws[cell] = format_date(
+                    input_date=str(
+                        contest.event_date,
+                    ),
+                )
             if letter_string[index] == 'K':
-                ws[cell] = format_date(input_date=str(contest.creation_date))
+                ws[cell] = format_date(
+                    input_date=str(
+                        contest.creation_date,
+                    ),
+                )
             if letter_string[index] == 'L':
-                ws[cell] = format_date(input_date=str(contest.modified_date))
+                ws[cell] = format_date(
+                    input_date=str(
+                        contest.modified_date,
+                    ),
+                )
 
     wb.save('media//export.xlsx')

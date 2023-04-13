@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateResponseMixin
 
 from accounts.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
-from students.input import import_students
+from students.input import import_students, create_import_students_example
 from students.services import get_student_contest_by_id, get_student_by_id, get_former_students
 
 
@@ -79,6 +79,7 @@ class FormerStudentListView(
 
 def download_students_import_example(request):
     """Download example excel file"""
+    create_import_students_example()
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     filename = 'students_import_example.xlsx'
     filepath = BASE_DIR + '/media/' + filename

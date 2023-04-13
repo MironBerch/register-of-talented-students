@@ -17,5 +17,6 @@ venv/
 .env.prod
 
 # media
+*.xlsx
 media/students
 media/diplom_scans
