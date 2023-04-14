@@ -8,39 +8,39 @@ from accounts.managers import UserManager
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         _('email address'),
-        max_length=100, 
-        unique=True, 
+        max_length=100,
+        unique=True,
         null=True,
     )
     name = models.CharField(
-        _('name'), 
+        _('name'),
         max_length=100,
     )
     surname = models.CharField(
-        _('surname'), 
+        _('surname'),
         max_length=100,
     )
     patronymic = models.CharField(
         _('patronymic'),
-        max_length=100, 
-        null=True, 
+        max_length=100,
+        null=True,
         blank=True,
     )
-    
+
     is_active = models.BooleanField(
-        _('active'), 
+        _('active'),
         default=False,
     )
     is_verified = models.BooleanField(
-        _('verified'), 
+        _('verified'),
         default=False,
     )
     is_superuser = models.BooleanField(
-        _('superuser'), 
+        _('superuser'),
         default=False,
     )
     is_staff = models.BooleanField(
-        _('staff'), 
+        _('staff'),
         default=False,
     )
 

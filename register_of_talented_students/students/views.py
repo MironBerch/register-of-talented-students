@@ -8,7 +8,11 @@ from django.views.generic.base import TemplateResponseMixin
 from accounts.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
 from students.input import import_students, create_import_students_example
-from students.services import get_student_contest_by_id, get_student_by_id, get_former_students
+from students.services import (
+    get_student_contest_by_id,
+    get_student_by_id,
+    get_former_students,
+)
 
 
 class ImportStudentsView(
@@ -16,46 +20,53 @@ class ImportStudentsView(
     TemplateResponseMixin,
     View,
 ):
+    """View for import students"""
 
     template_name = 'students/import_student.html'
     form_class = StudentsImportForm
 
     def get(self, request):
         return self.render_to_response(
-            context = {
+            context={
                 'form': self.form_class(),
             },
         )
-    
+
     def post(self, request):
-        form = StudentsImportForm(request.POST or None, files=request.FILES or None)
+        form = StudentsImportForm(
+            request.POST or None,
+            files=request.FILES or None,
+        )
 
         if form.is_valid():
             students = form.save()
             filename = students.file.open('r')
-            BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            BASE_DIR = os.path.dirname(
+                os.path.dirname(os.path.abspath(__file__)),
+            )
             filepath = BASE_DIR + '/media/' + str(filename)
             import_students(filepath)
             return redirect('list')
-        
+
         return self.render_to_response(
-            context = {
+            context={
                 'form': self.form_class(),
             },
         )
-    
+
 
 class StudentDetailView(
     LoginRequiredMixin,
     TemplateResponseMixin,
     View,
 ):
-    
+    """View for detail student"""
+
     template_name = 'students/detail_student.html'
 
     def get(self, request, id):
         return self.render_to_response(
-            context = {
+            context={
                 'contests': get_student_contest_by_id(id=id),
                 'student': get_student_by_id(id=id)
             },
@@ -67,11 +78,13 @@ class FormerStudentListView(
     TemplateResponseMixin,
     View,
 ):
+    """View for former students list"""
+
     template_name = 'students/former_student.html'
 
     def get(self, request):
         return self.render_to_response(
-            context = {
+            context={
                 'students': get_former_students()
             },
         )

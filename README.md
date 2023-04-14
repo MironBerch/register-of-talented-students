@@ -11,7 +11,7 @@
 
 ## Start project:
 
-To run docker containers you have to create a if you want developing `.env.dev` or if add project in production `.env.prod` file in the root directory.
+To run docker containers you have to create `.env` file in the code directory.
 
 ### Example of `.env` file:
 

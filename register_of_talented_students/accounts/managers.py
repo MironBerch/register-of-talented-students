@@ -5,23 +5,26 @@ class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def create_user(
-            self, 
-            email=None, 
-            name=None, 
-            surname=None, 
-            patronymic=None, 
-            password=None, 
+            self,
+            email=None,
+            name=None,
+            surname=None,
+            patronymic=None,
+            password=None,
             **extra_fields
         ):
-        if not email: return ValueError('Почта обязательна')
-        if not name: return ValueError('Имя обязательна')
-        if not surname: return ValueError('Фамилия обязательна')
+        if not email:
+            return ValueError('Почта обязательна')
+        if not name:
+            return ValueError('Имя обязательна')
+        if not surname:
+            return ValueError('Фамилия обязательна')
         email = self.normalize_email(email)
         user = self.model(
-            email=email, 
-            name=name, 
-            surname=surname, 
-            patronymic=patronymic, 
+            email=email,
+            name=name,
+            surname=surname,
+            patronymic=patronymic,
             **extra_fields
         )
         user.set_password(password)
@@ -29,17 +32,17 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(
-            self, 
-            email, 
-            name, 
-            surname, 
-            password, 
+            self,
+            email,
+            name,
+            surname,
+            password,
             **extra_fields
         ):
         user = self.create_user(
-            email=self.normalize_email(email), 
-            name=name, 
-            surname=surname, 
+            email=self.normalize_email(email),
+            name=name,
+            surname=surname,
             password=password
         )
         user.is_active = True

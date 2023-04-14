@@ -48,8 +48,8 @@ def create_student(
 
 
 def update_student(
-        full_name: str, 
-        school_class: str, 
+        full_name: str,
+        school_class: str,
         is_learns: bool,
 ) -> None:
     """Update student"""

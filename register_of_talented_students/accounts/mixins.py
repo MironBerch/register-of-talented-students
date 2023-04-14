@@ -7,7 +7,9 @@ class SuperUserRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('list')
-        return super(SuperUserRequiredMixin, self).dispatch(request, *args, **kwargs)
+        return super(
+            SuperUserRequiredMixin, self
+        ).dispatch(request, *args, **kwargs)
 
 
 class AnonymousUserRequiredMixin:
@@ -16,4 +18,6 @@ class AnonymousUserRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('signout')
-        return super(AnonymousUserRequiredMixin, self).dispatch(request, *args, **kwargs)
+        return super(
+            AnonymousUserRequiredMixin, self
+        ).dispatch(request, *args, **kwargs)

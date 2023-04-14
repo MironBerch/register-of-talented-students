@@ -11,9 +11,20 @@ class ContestForm(forms.ModelForm):
             }
         ),
     )
+
     class Meta:
         model = Contest
-        fields = ('event_date', 'title', 'other', 'teachers_name', 'stage', 'direction', 'subject', 'result', 'scan_diploma',)
+        fields = (
+            'event_date',
+            'title',
+            'other',
+            'teachers_name',
+            'stage',
+            'direction',
+            'subject',
+            'result',
+            'scan_diploma',
+        )
         widgets = {
             'scan_diploma': forms.FileInput(
                 attrs={

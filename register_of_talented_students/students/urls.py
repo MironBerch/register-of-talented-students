@@ -1,6 +1,11 @@
 from django.urls import path
 
-from students.views import ImportStudentsView, StudentDetailView, FormerStudentListView, download_students_import_example
+from students.views import (
+    ImportStudentsView,
+    StudentDetailView,
+    FormerStudentListView,
+    download_students_import_example,
+)
 
 
 urlpatterns = [

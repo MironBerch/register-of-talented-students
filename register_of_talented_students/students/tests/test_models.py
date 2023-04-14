@@ -22,6 +22,8 @@ class TestStudentsModels(TestCase):
 
     def test_student_fields(self):
         """Test student fields"""
-        self.assertAlmostEquals(self.student.full_name, 'Берчетов Мирон Андреевич')
+        self.assertAlmostEquals(
+            self.student.full_name, 'Берчетов Мирон Андреевич'
+        )
         self.assertAlmostEquals(str(self.student.school_class), '9в')
-        self.assertAlmostEquals(self.student.is_learns, True)    
+        self.assertAlmostEquals(self.student.is_learns, True)

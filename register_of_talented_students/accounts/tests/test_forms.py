@@ -4,7 +4,6 @@ from accounts.forms import SignupForm, SigninForm
 
 
 class TestSignupForm(SimpleTestCase):
-    
     def test_signup_form_valid_data(self):
         form = SignupForm(
             data={
@@ -26,7 +25,6 @@ class TestSignupForm(SimpleTestCase):
 
 
 class TestSigninForm(SimpleTestCase):
-    
     def test_signin_form_valid_data(self):
         form = SigninForm(
             data={

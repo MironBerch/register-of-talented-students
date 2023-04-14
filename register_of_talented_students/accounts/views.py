@@ -15,13 +15,14 @@ class SignupView(
     TemplateResponseMixin,
     View,
 ):
-    
+    """View for creating new user"""
+
     template_name = 'registration/signup.html'
     form_class = SignupForm
 
     def get(self, request):
         return self.render_to_response(
-            context = {
+            context={
                 'form': self.form_class(),
             },
         )
@@ -37,17 +38,20 @@ class SignupView(
             User.objects.create_user(
                 email=email,
                 name=name,
-                surname=surname, 
-                patronymic=patronymic, 
+                surname=surname,
+                patronymic=patronymic,
                 password=password,
             )
-            messages.success(request, 'Пользователь зарегистрирован. Подождите активации пользователя администратором.')
+            messages.success(
+                request,
+                'Пользователь зарегистрирован. Подождите активации пользователя администратором.'
+            )
             return redirect('signin')
-        
+
         messages.success(request, 'Пароли не совпадают.')
-        
+
         return self.render_to_response(
-            context = {
+            context={
                 'form': form,
             },
         )
@@ -58,15 +62,14 @@ class SigninView(
     TemplateResponseMixin,
     View,
 ):
-    
+    """View for login in system"""
+
     template_name = 'registration/signin.html'
     form_class = SigninForm
 
     def get(self, request):
-        form = SigninForm()
-
         return self.render_to_response(
-            context = {
+            context={
                 'form': self.form_class(),
             },
         )
@@ -78,15 +81,15 @@ class SigninView(
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = authenticate(request, email=email, password=password)
-            
+
             if user is not None:
                 login(request, user)
                 return redirect('list')
-            
+
             messages.warning(request, 'Неправильная почта или пароль.')
 
         return self.render_to_response(
-            context = {
+            context={
                 'form': form,
             },
         )
@@ -96,6 +99,8 @@ class SignoutView(
     LoginRequiredMixin,
     View,
 ):
+    """View for sign out from system"""
+
     def get(self, request):
         return render(request, 'registration/signout.html')
 

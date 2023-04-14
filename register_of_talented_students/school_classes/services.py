@@ -19,10 +19,10 @@ def get_all_classes():
     ordered_school_classes = []
 
     school_classes = Class.objects.all()
-    
+
     for school_class in school_classes:
         classes_list.append(school_class.school_class)
-    
+
     classes_list.sort(key=lambda x: (int(x[:-1]), x[-1]))
 
     for school_class in classes_list:
@@ -30,7 +30,7 @@ def get_all_classes():
             school_class=school_class,
         )
         ordered_school_classes.append(school_class)
-    
+
     return ordered_school_classes
 
 
@@ -40,6 +40,7 @@ def create_school_class_if_not_exist(school_class: str) -> None:
         Class.objects.create(
             school_class=school_class,
         )
+
 
 def get_number_of_school_classes_students():
     """Count learning school class students"""
