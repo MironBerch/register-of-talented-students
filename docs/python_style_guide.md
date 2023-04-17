@@ -70,13 +70,6 @@ if (
     ...
 ```
 ```python
-search_vector = (
-    SearchVector('name', weight='A') +
-    SearchVector('location__city', weight='B') +
-    SearchVector('description', weight='B')
-)
-```
-```python
 long_text = (
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, "
     "asperiores consequatur dolor ea enim esse explicabo ipsa, magni minus, "

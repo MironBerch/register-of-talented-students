@@ -30,16 +30,6 @@ cd register_of_talented_students
 docker-compose up --build
 ```
 
-### by using docker on production server
-- Run this command - it redirects to the code directory
-```
-cd register_of_talented_students
-```
-- Run this command - it start docker compose on server
-```
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
-```
-
 ## Documentation
 
 - [Project documentation](./docs/README.md)
