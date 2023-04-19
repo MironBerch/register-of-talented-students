@@ -65,7 +65,7 @@ class ContestListView(
         if request.user.is_superuser:
             contests = get_all_contests()
         else:
-            contests = get_users_creation_contests(request=request)
+            contests = get_users_creation_contests(user=request.user)
 
         return self.render_to_response(
             context={
@@ -87,8 +87,8 @@ class ContestUpdateView(
         contest = get_contest(id=id)
 
         if not (
-            request.user.is_superuser is True or
-            request.user is contest.contest_creater
+            request.user.is_superuser or
+            request.user == contest.contest_creater
         ):
             return redirect('list')
 
@@ -138,7 +138,8 @@ class ContestDeleteView(
         contest = get_contest(id=id)
 
         if not (
-            request.user.is_superuser or request.user is contest.contest_creater
+            request.user.is_superuser or 
+            request.user == contest.contest_creater
         ):
             return redirect('list')
 
@@ -183,7 +184,7 @@ class ContestExportView(LoginRequiredMixin, View):
         if request.user.is_superuser:
             contests = get_all_contests()
         else:
-            contests = get_users_creation_contests(request=request)
+            contests = get_users_creation_contests(user=request.user)
 
         export_contest_to_excel(contests)
 

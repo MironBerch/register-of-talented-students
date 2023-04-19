@@ -33,3 +33,7 @@ docker-compose up --build
 ## Documentation
 
 - [Project documentation](./docs/README.md)
+
+## License
+
+This project is licensed under the terms of the MIT license.
