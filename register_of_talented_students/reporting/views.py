@@ -138,7 +138,7 @@ class ContestDeleteView(
         contest = get_contest(id=id)
 
         if not (
-            request.user.is_superuser or 
+            request.user.is_superuser or
             request.user == contest.contest_creater
         ):
             return redirect('list')

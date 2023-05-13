@@ -5,16 +5,11 @@
 
 # env data
 .venv
-venv
 env
-env.dev
-env.prod
 env*
-venv*
 venv/
 .env
-.env.dev
-.env.prod
+.env.db
 
 # media
 *.xlsx

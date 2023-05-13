@@ -12,7 +12,7 @@ class UserManager(BaseUserManager):
             patronymic=None,
             password=None,
             **extra_fields
-        ):
+    ):
         if not email:
             return ValueError('Почта обязательна')
         if not name:
@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
             surname,
             password,
             **extra_fields
-        ):
+    ):
         user = self.create_user(
             email=self.normalize_email(email),
             name=name,
