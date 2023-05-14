@@ -1,6 +1,8 @@
-FROM python:3.10-alpine
+# BUILDER
 
-WORKDIR /app
+FROM python:3.10-alpine as builder
+
+WORKDIR /usr/src/app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -9,13 +11,40 @@ RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
 
-RUN mkdir /app/media
+RUN pip install flake8
 
 COPY . .
+RUN flake8 --ignore=W504,E125 --max-line-length=100 --exclude=migrations /usr/src/app
 
-COPY entrypoint.prod.sh /app/
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
-ENTRYPOINT ["sh", "/app/entrypoint.prod.sh"]
+
+# FINAL
+
+FROM python:3.10-alpine
+
+RUN mkdir -p /home/app
+
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/static
+RUN mkdir $APP_HOME/media
+
+WORKDIR $APP_HOME
+
+RUN apk update && apk add libpq
+
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+
+RUN pip install --no-cache /wheels/*
+
+COPY ./entrypoint.prod.sh $APP_HOME
+
+COPY . $APP_HOME
+
+ENTRYPOINT ["sh", "/home/app/web/entrypoint.prod.sh"]

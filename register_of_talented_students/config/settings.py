@@ -35,7 +35,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django_auto_logout.middleware.auto_logout',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 
@@ -107,7 +106,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 if DEBUG:
-    STATICFILES_DIRS = [BASE_DIR / 'static']
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static',
+    ]
 else:
     STATIC_ROOT = BASE_DIR / 'static'
 
