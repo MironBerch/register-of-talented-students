@@ -46,6 +46,18 @@ SECRET_KEY='8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t'
 DEBUG=0
 ```
 
+- Run this command - it will create a `.env.db` file using vim
+```sh
+vim .env.db
+```
+
+- Example `.env.db` file
+```dotenv
+POSTGRES_USER=project_user
+POSTGRES_PASSWORD=project_password
+POSTGRES_DB=project_db
+```
+
 - Run this command - it will launch the site
 ```sh
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
@@ -68,6 +80,11 @@ docker ps
 - Run this command - it will launch bash inside the docker container
 ```sh
 docker exec -it <CONTAINER_ID> bash
+```
+
+- Or run this command - it will launch sh inside the docker container
+```sh
+docker exec -it <CONTAINER_ID> sh
 ```
 
 - Run this command - it will create an administrator inside the docker container

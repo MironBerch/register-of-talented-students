@@ -24,15 +24,27 @@ register_of_talented_students
 │       │   list.html
 |       │   detail.html
 |
-└───.env.dev
+└───.env
+|
+└───.env.db
+|
+└───docker-compose.prod.yml
 |
 └───docker-compose.yml
 |
 └───Dockerfile
 |
+└───Dockerfile.prod
+|
+└───entrypoint.prod.sh
+|
+└───entrypoint.sh
+|
 └───manage.py
 |
 └───requirements.txt
+|
+└───setup.cfg
 ```
 
 ## App structure
@@ -44,6 +56,8 @@ app
 |───admin.py
 |───apps.py
 |───forms.py
+|───managers.py
+|───mixins.py
 |───models.py
 |───services.py
 |───urls.py

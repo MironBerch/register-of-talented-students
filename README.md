@@ -3,17 +3,17 @@
 ## Technologies:
 - python 3.10
 - Django 4
-- SQLite
+- PostgreSQL
 - Bootstrap 5
 - Nginx
-- Docker 20.10
-- docker-compose 1.20
+- Docker
+- docker-compose
 
 ## Start project:
 
 To run docker containers you have to create `.env` file in the code directory.
 
-### Example of `.env` file:
+### Example of `.env` file for development server:
 
 ```dotenv
 SECRET_KEY='django-insecure-8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t'
@@ -27,7 +27,7 @@ cd register_of_talented_students
 ```
 - Run this command - it start docker compose
 ```
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 ## Documentation
