@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     build:
-      context: .
+      context: ./register
       dockerfile: Dockerfile.prod
     command: gunicorn config.wsgi:application --timeout 300 --bind 0.0.0.0:8000
     expose:
@@ -20,7 +20,7 @@ services:
     volumes:
       - postgres_volume:/var/lib/postgresql/data/
     env_file:
-      - .env.db
+      - .env
   nginx:
     build: ./nginx
     volumes:
