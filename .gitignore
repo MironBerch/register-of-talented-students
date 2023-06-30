@@ -5,13 +5,9 @@
 
 # env data
 .venv
-env
 env*
-venv/
 .env
-.env.db
 
 # media
 *.xlsx
-media/students
-media/diplom_scans
+register/media/
