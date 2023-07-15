@@ -42,7 +42,7 @@ vim .env
 
 - Пример `.env` файла
 ```dotenv
-SECRET_KEY='8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t'
+SECRET_KEY=8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t
 DEBUG=0
 POSTGRES_USER=project_user
 POSTGRES_PASSWORD=project_password

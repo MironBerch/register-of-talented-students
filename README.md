@@ -11,19 +11,10 @@
 
 ## Start project:
 
-To run docker containers you have to create `.env` file in the code directory.
-
-### Example of `.env` file for development server:
-
-```dotenv
-SECRET_KEY='8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t'
-DEBUG=1
-```
-
 ### by using docker on local server
 - Run this command - it start docker compose
 ```
-docker-compose up --build -d
+docker-compose up --build
 ```
 
 ## Documentation
