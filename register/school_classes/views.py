@@ -1,11 +1,8 @@
-from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
 from django.views.generic.base import TemplateResponseMixin
 
-from school_classes.services import (
-    get_all_classes,
-    get_number_of_school_classes_students,
-)
+from school_classes.services import get_all_classes, get_number_of_school_classes_students
 from students.services import get_students_by_class
 
 

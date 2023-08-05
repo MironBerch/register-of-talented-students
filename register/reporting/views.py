@@ -1,17 +1,16 @@
 import os
-from django.shortcuts import render, redirect
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse
+from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
 
-from reporting.forms import ContestForm, ContestUpdateForm
-from reporting.services import (
-    get_all_contests, get_users_creation_contests, get_contest,
-)
 from reporting.export import export_contest_to_excel
-from students.services import get_students_by_class, get_student_by_full_name
+from reporting.forms import ContestForm, ContestUpdateForm
+from reporting.services import get_all_contests, get_contest, get_users_creation_contests
 from school_classes.services import get_all_classes
+from students.services import get_student_by_full_name, get_students_by_class
 
 
 class ContestCreateView(

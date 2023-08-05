@@ -1,13 +1,13 @@
-from django.urls import resolve, reverse
 from django.test import SimpleTestCase
+from django.urls import resolve, reverse
 
 from reporting.views import (
     ContestCreateView,
-    ContestListView,
-    ContestUpdateView,
     ContestDeleteView,
     ContestDetailView,
-    render_students_select
+    ContestListView,
+    ContestUpdateView,
+    render_students_select,
 )
 
 

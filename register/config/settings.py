@@ -1,7 +1,6 @@
 from os import environ
 from pathlib import Path
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get('SECRET_KEY', default='not-secure-key')
 DEBUG = int(environ.get('DEBUG', default=True))

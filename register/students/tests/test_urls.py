@@ -1,5 +1,5 @@
-from django.urls import resolve, reverse
 from django.test import SimpleTestCase
+from django.urls import resolve, reverse
 
 from students.views import ImportStudentsView, StudentDetailView
 

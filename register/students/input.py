@@ -1,11 +1,7 @@
-from openpyxl import load_workbook, Workbook
+from openpyxl import Workbook, load_workbook
 
-from students.services import (
-    create_student, search_student, update_student, deduct_students,
-)
-from school_classes.services import (
-    get_school_class, create_school_class_if_not_exist,
-)
+from school_classes.services import create_school_class_if_not_exist, get_school_class
+from students.services import create_student, deduct_students, search_student, update_student
 
 
 def import_students(filepath):

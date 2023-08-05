@@ -1,7 +1,6 @@
 from django.urls import path
 
-from accounts.views import SignupView, SigninView, SignoutView
-
+from accounts.views import SigninView, SignoutView, SignupView
 
 urlpatterns = [
     path(

@@ -2,8 +2,8 @@ from django.test import TestCase
 
 from accounts.models import User
 from reporting.models import Contest
-from students.models import Student
 from school_classes.models import Class
+from students.models import Student
 
 
 class TestContestModels(TestCase):

@@ -1,10 +1,7 @@
-from django.urls import resolve, reverse
 from django.test import SimpleTestCase
+from django.urls import resolve, reverse
 
-from school_classes.views import (
-    SchoolClassesListView,
-    SchoolClassStudentsListView,
-)
+from school_classes.views import SchoolClassesListView, SchoolClassStudentsListView
 
 
 class TestSchoolClassesUrls(SimpleTestCase):
