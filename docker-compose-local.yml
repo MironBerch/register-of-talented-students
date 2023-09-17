@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  web:
+  server:
     build: .
     command: >
       sh -c "cd /app/register/
@@ -29,6 +29,30 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    env_file:
+      - ${ENV}
+    ports:
+      - "6380:6379"
+
+  celery:
+    restart: always
+    env_file:
+      - ${ENV}
+    build: .
+    volumes:
+      - .:/app
+    command: >
+      sh -c "cd /app/register/
+      && celery -A config worker -l info"
+    links:
+      - redis
+    depends_on:
+      - redis
+      - server
 
 volumes:
   postgres_volume:

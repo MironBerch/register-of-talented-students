@@ -8,6 +8,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -66,6 +67,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -79,6 +81,7 @@ DATABASES = {
 
 
 # Password validation
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -96,6 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
+
 LANGUAGE_CODE = 'ru-ru'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
@@ -103,6 +107,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
 STATIC_URL = '/static/'
 
 if DEBUG:
@@ -115,20 +120,28 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Custom auth user model
 
 AUTH_USER_MODEL = 'accounts.User'
 
+# Media urls
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Login urls
 
 LOGIN_URL = '/signin'
 LOGIN_REDIRECT_URL = 'list'
 
+# Django auto logout
 
 AUTO_LOGOUT = {
     'IDLE_TIME': 300,
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
     'MESSAGE': 'Вы бездействовали более 5 минут. Пожалуйста, войдите снова, чтобы продолжить.',
 }
+
+# Celery
+
+CELERY_BROKER_URL = environ.get('CELERY_BROKER_URL')
