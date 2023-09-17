@@ -6,10 +6,4 @@ done
 
 echo "Postgres did run"
 
-python manage.py collectstatic --no-input
-
-python manage.py makemigrations
-
-python manage.py migrate
-
 exec "$@"

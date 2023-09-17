@@ -3,35 +3,41 @@ version: '3.8'
 services:
   web:
     build:
-      context: ./register
+      context: .
       dockerfile: Dockerfile.prod
-    command: gunicorn config.wsgi:application --timeout 300 --bind 0.0.0.0:8000
+    command: >
+      sh -c "cd /home/app/web/register/
+      && python manage.py migrate --noinput
+      && python manage.py collectstatic --noinput
+      && gunicorn --reload -c ../configuration/gunicorn_config.py config.wsgi:application"
     expose:
       - 8000
     volumes:
-      - static_volume:/home/app/web/static
-      - media_volume:/home/app/web/media
+      - static_volume:/home/app/web/register/static
+      - media_volume:/home/app/web/register/media
     env_file:
-      - .env
+      - ${ENV}
     depends_on:
       - db
+
   db:
     image: postgres:14-alpine
     volumes:
       - postgres_volume:/var/lib/postgresql/data/
+    env_file:
+      - ${ENV}
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_HOST=${POSTGRES_HOST}
-      - POSTGRES_PORT=${POSTGRES_PORT}
+
   nginx:
-    build: ./nginx
+    build: ./configuration/nginx
     volumes:
-      - static_volume:/home/app/web/static
-      - media_volume:/home/app/web/media
+      - static_volume:/home/app/web/register/static
+      - media_volume:/home/app/web/register/media
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - web
 

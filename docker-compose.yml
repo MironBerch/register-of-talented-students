@@ -2,32 +2,33 @@ version: '3.8'
 
 services:
   web:
-    build:
-      context: ./register
-      dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    build: .
+    command: >
+      sh -c "cd /app/register/
+      && python manage.py migrate --noinput
+      && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./register/:/app/
+      - .:/app
     ports:
       - 8000:8000
     expose:
       - 8000
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
+    env_file:
+      - ${ENV}
+    depends_on:
+      - db
+  
   db:
     image: postgres:14-alpine
+    restart: always
     volumes:
       - postgres_volume:/var/lib/postgresql/data/
+    env_file:
+      - ${ENV}
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
 
 volumes:
   postgres_volume:
