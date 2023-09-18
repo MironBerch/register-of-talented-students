@@ -43,11 +43,14 @@ services:
     restart: always
     env_file:
       - ${ENV}
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
     volumes:
-      - .:/app
+      - static_volume:/home/app/web/register/static
+      - media_volume:/home/app/web/register/media
     command: >
-      sh -c "cd /app/register/
+      sh -c "cd /home/app/web/register/
       && celery -A config worker -l info"
     links:
       - redis

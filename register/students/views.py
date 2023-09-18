@@ -5,11 +5,13 @@ from django.http import FileResponse
 from django.shortcuts import redirect
 from django.views import View
 from django.views.generic.base import TemplateResponseMixin
+from django.conf import settings
 
 from accounts.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
-from students.input import create_import_students_example, import_students
+from students.input import create_import_students_example
 from students.services import get_former_students, get_student_by_id, get_student_contest_by_id
+from students.tasks import import_students_celery_task
 
 
 class ImportStudentsView(
@@ -38,11 +40,8 @@ class ImportStudentsView(
         if form.is_valid():
             students = form.save()
             filename = students.file.open('r')
-            BASE_DIR = os.path.dirname(
-                os.path.dirname(os.path.abspath(__file__)),
-            )
-            filepath = BASE_DIR + '/media/' + str(filename)
-            import_students(filepath)
+            filepath = str(settings.BASE_DIR) + '/media/' + str(filename)
+            import_students_celery_task.delay(filepath=filepath)
             return redirect('list')
 
         return self.render_to_response(
