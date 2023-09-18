@@ -9,5 +9,6 @@ env*
 .env
 
 # media
-*.xlsx
-register/media/
+register/media/diplom_scans
+register/media/students
+!register/media/students_import_example

@@ -9,7 +9,6 @@ from django.conf import settings
 
 from accounts.mixins import SuperUserRequiredMixin
 from students.forms import StudentsImportForm
-from students.input import create_import_students_example
 from students.services import get_former_students, get_student_by_id, get_student_contest_by_id
 from students.tasks import import_students_celery_task
 
@@ -88,10 +87,7 @@ class FormerStudentListView(
 
 def download_students_import_example(request):
     """Download example excel file"""
-    create_import_students_example()
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    filename = 'students_import_example.xlsx'
-    filepath = BASE_DIR + '/media/' + filename
+    filepath = str(settings.BASE_DIR) + '/media/' + 'students_import_example.xlsx'
     file = open(filepath, 'rb')
     response = FileResponse(file)
     return response
