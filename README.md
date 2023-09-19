@@ -1,20 +1,53 @@
-# Register of talented students [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+# Register of talented students
 
 ## Technologies:
-- python 3.10
 - Django 4
-- PostgreSQL
-- Bootstrap 5
-- Nginx
-- Docker
-- docker-compose
+- Postgresql
+- Redis
+- Celery
 
-## Start project:
+## Configuration
+Docker containers:
+ 1. server
+ 2. db
+ 3. redis
+ 4. celery
+ 5. nginx
 
-### by using docker on local server
-- Run this command - it start docker compose
+docker-compose files:
+ 1. `docker-compose-local.yml` - for local development
+ 2. `docker-compose-master.yml` - for production
+
+To run docker containers you have to create a `.env` file in the root directory.
+
+### Example of `.env` file:
+
+```dotenv
+ENV=.env
+
+# Project
+SECRET_KEY=
+DEBUG=
+
+
+# Postgres
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_HOST=<db>
+POSTGRES_PORT=
+
+
+# Celery
+CELERY_BROKER_URL=<redis://redis:6379>
+
 ```
-docker-compose up --build
+
+### Start project:
+
+Local:
+```shell
+docker-compose -f docker-compose-local.yml up --build
 ```
 
 ## Documentation

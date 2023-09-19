@@ -42,18 +42,26 @@ vim .env
 
 - Example `.env` file
 ```dotenv
-SECRET_KEY=8fajd3)on9ecoq&&8__eryh-d5sz@6!8ky3+y0u5k6gw8!q$^t
+ENV=.env
+
+# Project
+SECRET_KEY=not-secure-key
 DEBUG=0
-POSTGRES_USER=postgres_user
-POSTGRES_PASSWORD=postgres_password
+
+# Postgres
+POSTGRES_DB=db
+POSTGRES_USER=db_user
+POSTGRES_PASSWORD=db_user_pass
 POSTGRES_HOST=db
 POSTGRES_PORT=5432
-POSTGRES_DB=postgres_db
+
+# Celery
+CELERY_BROKER_URL=redis://redis:6379
 ```
 
 - Run this command - it will launch the site
 ```sh
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+docker-compose -f docker-compose.yml -f docker-compose-master.yml up --build -d
 ```
 
 - Run this command - it will view docker containers
@@ -66,10 +74,10 @@ docker ps
 | CONTAINER ID | IMAGE | ...
 | ------------ | ----------------------------------- | ---
 | e87ee7777e59 | register_of_talented_students-nginx | ...
-| 9b9701f23e02 | register_of_talented_students-web | ...
+| 9b9701f23e02 | register_of_talented_students-server | ...
 ```
 
-- Select the CONTAINER ID whose IMAGE is register_of_talented_students-web
+- Select the CONTAINER ID whose IMAGE is register_of_talented_students-server
 - Run this command - it will launch bash inside the docker container
 ```sh
 docker exec -it <CONTAINER_ID> bash
